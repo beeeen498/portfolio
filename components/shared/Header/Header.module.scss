@@ -12,6 +12,19 @@
   z-index: 100;
   width: 100%;
 
+  /* hide nav until JS mounts — prevents flash */
+  &:not(.mounted) .nav {
+    transition: none !important;
+  }
+
+  &:not(.mounted) .dividerVertical {
+    transition: none !important;
+  }
+
+  &:not(.mounted) .menuBtn span {
+    transition: none !important;
+  }
+
   /* ========================
      TOP ROW
   ======================== */
@@ -24,7 +37,6 @@
     color: $white;
     font-family: $font-abel;
     font-size: 14px;
-    color: $neon;
 
     /* left group — lang, linkedin, contact */
     .topLeft {
@@ -109,7 +121,6 @@
       .nav {
         display: flex;
         flex-direction: column;
-        align-items: center;
         flex: 1;
         gap: 4px;
         transition:
@@ -124,7 +135,8 @@
 
         .navRow {
           display: flex;
-          gap: 16px;
+          gap: 66px;
+          justify-content: center;
 
           a {
             font-family: $font-abel;
@@ -135,6 +147,10 @@
               color: $neon;
             }
           }
+        }
+
+        .navRow:first-child a:first-child {
+          transform: translateX(6px);
         }
 
         /* horizontal divider */
@@ -198,76 +214,92 @@
       }
     }
   }
-}
 
-/* ========================
-   MOBILE OVERLAY
-======================== */
-.mobileOverlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: $black;
-  z-index: 99;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
+  /* ========================
+     MOBILE OVERLAY
+  ======================== */
+  .mobileOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: $black;
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 
-  &.overlayOpen {
-    opacity: 1;
-    pointer-events: all;
-  }
+    &.overlayOpen {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: all;
+    }
 
-  .mobileNav {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    gap: 32px;
+    .mobileNav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      gap: 32px;
 
-    a {
-      color: $white;
-      font-family: $font-teko;
-      font-size: 48px;
-      text-transform: uppercase;
+      a {
+        color: $white;
+        font-family: $font-teko;
+        font-size: 48px;
+        text-transform: uppercase;
 
-      &:hover {
-        color: $neon;
+        &:hover {
+          color: $neon;
+        }
       }
     }
   }
-}
 
-/* ========================
-   MOBILE — 768px
-======================== */
-@media (max-width: 768px) {
-  /* show overlay */
-  .mobileOverlay {
-    display: block;
-  }
+  /* ========================
+     DESKTOP — 769px+
+  ======================== */
+  @media (min-width: 769px) {
+    .navClosed {
+      transform: translateX(100%) !important;
+      opacity: 0 !important;
+    }
 
-  /* hide desktop nav and divider, center logo */
-  .bottomRow .leftCol {
-    width: 100%;
-    justify-content: center;
-
-    .dividerVertical,
-    .nav {
-      display: none !important;
-      transform: none !important;
-      opacity: 1 !important;
-      transition: none !important;
+    .hidden {
+      opacity: 0 !important;
     }
   }
 
-  /* right column shrinks */
-  .bottomRow .rightCol {
-    width: auto;
-    padding: 0 24px;
+  /* ========================
+     MOBILE — 768px
+  ======================== */
+  @media (max-width: 768px) {
+    .mobileOverlay {
+      display: block;
+
+      &:not(.overlayOpen) {
+        transition: none !important;
+      }
+    }
+
+    .leftCol {
+      width: 100% !important;
+      justify-content: center;
+
+      .dividerVertical,
+      .nav {
+        display: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+        transition: none !important;
+      }
+    }
+
+    .rightCol {
+      width: auto !important;
+      padding: 0 24px;
+    }
   }
 }
