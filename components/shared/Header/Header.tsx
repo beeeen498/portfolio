@@ -71,19 +71,30 @@ export default function Header() {
             className={`${styles.dividerVertical} ${!menuOpen ? styles.hidden : ""}`}
           />
 
-          {/* navigation — desktop only */}
+          {/* navigation */}
           <nav className={`${styles.nav} ${!menuOpen ? styles.navClosed : ""}`}>
             <div className={styles.navRow}>
-              <a href="#home">Home</a>
-              <a href="#projects">Projects</a>
+              <a href="#home" onClick={() => isMobile && setMenuOpen(false)}>
+                Home
+              </a>
+              <a
+                href="#projects"
+                onClick={() => isMobile && setMenuOpen(false)}
+              >
+                Projects
+              </a>
             </div>
 
             {/* horizontal divider */}
             <div className={styles.dividerHorizontal} />
 
             <div className={styles.navRow}>
-              <a href="#about">About</a>
-              <a href="#contact">Contact</a>
+              <a href="#about" onClick={() => isMobile && setMenuOpen(false)}>
+                About
+              </a>
+              <a href="#contact" onClick={() => isMobile && setMenuOpen(false)}>
+                Contact
+              </a>
             </div>
           </nav>
         </div>
