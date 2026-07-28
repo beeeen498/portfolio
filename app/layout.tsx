@@ -30,7 +30,22 @@ const syncopate = Syncopate({
 // metadata
 export const metadata: Metadata = {
   title: "Ben Kedem | Front End Developer",
-  description: "Front End Developer portfolio",
+  description: "Front End Developer portfolio showcasing projects and skills",
+  keywords: [
+    "Front End Developer",
+    "React",
+    "Next.js",
+    "Portfolio",
+    "Ben Kedem",
+  ],
+  authors: [{ name: "Ben Kedem" }],
+  openGraph: {
+    title: "Ben Kedem | Front End Developer",
+    description: "Front End Developer portfolio showcasing projects and skills",
+    type: "website",
+    locale: "en_US",
+    url: "https://benkedem.co",
+  },
 };
 
 export default function RootLayout({
