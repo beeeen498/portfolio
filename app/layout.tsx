@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Teko, Russo_One, Abel, Syncopate } from "next/font/google";
-import "@/styles/main.scss";
+import Header from "@/components/shared/Header/Header";
+import "@/app/main.scss";
 
 // fonts
 const teko = Teko({
@@ -58,7 +59,10 @@ export default function RootLayout({
       lang="en"
       className={`${teko.variable} ${russoOne.variable} ${abel.variable} ${syncopate.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }

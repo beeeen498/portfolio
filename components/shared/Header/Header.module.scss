@@ -1,0 +1,273 @@
+/* ========================
+   IMPORT VARIABLES
+======================== */
+@use "@/styles/variables" as *;
+
+/* ========================
+   HEADER
+======================== */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+
+  /* ========================
+     TOP ROW
+  ======================== */
+  .topRow {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 8px 24px;
+    background-color: $black;
+    color: $white;
+    font-family: $font-abel;
+    font-size: 14px;
+    color: $neon;
+
+    /* left group — lang, linkedin, contact */
+    .topLeft {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      /* language toggle */
+      .langToggle {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        background: none;
+        border: none;
+        color: $white;
+        font-family: $font-abel;
+        font-size: 14px;
+        cursor: pointer;
+
+        .langActive {
+          color: $neon;
+          font-weight: 700;
+        }
+
+        &:hover {
+          color: $neon;
+        }
+      }
+
+      /* icon links (linkedin, envelope) */
+      .iconLink {
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+
+        &:hover {
+          color: $neon;
+        }
+      }
+    }
+  }
+
+  /* ========================
+     BOTTOM ROW
+  ======================== */
+  .bottomRow {
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid $black;
+
+    /* ---- left column ---- */
+    .leftCol {
+      display: flex;
+      align-items: center;
+      width: 80%;
+      background-color: $grey;
+      overflow: hidden;
+
+      /* logo */
+      .logo {
+        font-family: $font-teko;
+        font-size: 28px;
+        font-weight: 700;
+        text-transform: uppercase;
+        white-space: nowrap;
+        padding: 12px 24px;
+      }
+
+      /* vertical divider */
+      .dividerVertical {
+        width: 1px;
+        align-self: stretch;
+        background-color: $black;
+        transition: opacity 0.4s ease;
+
+        &.hidden {
+          opacity: 0;
+        }
+      }
+
+      /* navigation — stretched */
+      .nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+        gap: 4px;
+        transition:
+          transform 0.4s ease,
+          opacity 0.4s ease;
+
+        /* closed state — slide right */
+        &.navClosed {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+
+        .navRow {
+          display: flex;
+          gap: 16px;
+
+          a {
+            font-family: $font-abel;
+            font-size: 14px;
+            text-transform: uppercase;
+
+            &:hover {
+              color: $neon;
+            }
+          }
+        }
+
+        /* horizontal divider */
+        .dividerHorizontal {
+          width: 100%;
+          height: 1px;
+          background-color: $black;
+        }
+      }
+    }
+
+    /* ---- right column ---- */
+    .rightCol {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20%;
+      margin-left: auto;
+      background-color: $black;
+      z-index: 100;
+
+      /* hamburger / X button */
+      .menuBtn {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+
+        span {
+          display: block;
+          width: 24px;
+          height: 2px;
+          background-color: $white;
+          transition: all 0.3s ease;
+        }
+
+        /* X state */
+        &.open {
+          span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+          }
+
+          span:nth-child(2) {
+            opacity: 0;
+          }
+
+          span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+          }
+        }
+
+        &:hover span {
+          background-color: $neon;
+        }
+      }
+    }
+  }
+}
+
+/* ========================
+   MOBILE OVERLAY
+======================== */
+.mobileOverlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: $black;
+  z-index: 99;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+
+  &.overlayOpen {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .mobileNav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 32px;
+
+    a {
+      color: $white;
+      font-family: $font-teko;
+      font-size: 48px;
+      text-transform: uppercase;
+
+      &:hover {
+        color: $neon;
+      }
+    }
+  }
+}
+
+/* ========================
+   MOBILE — 768px
+======================== */
+@media (max-width: 768px) {
+  /* show overlay */
+  .mobileOverlay {
+    display: block;
+  }
+
+  /* hide desktop nav and divider, center logo */
+  .bottomRow .leftCol {
+    width: 100%;
+    justify-content: center;
+
+    .dividerVertical,
+    .nav {
+      display: none !important;
+      transform: none !important;
+      opacity: 1 !important;
+      transition: none !important;
+    }
+  }
+
+  /* right column shrinks */
+  .bottomRow .rightCol {
+    width: auto;
+    padding: 0 24px;
+  }
+}
