@@ -14,6 +14,7 @@
 ======================== */
 html {
   scroll-behavior: smooth;
+  --header-height: 88px;
 }
 
 body {
@@ -28,11 +29,17 @@ a {
   color: inherit;
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: $font-teko;
   text-transform: uppercase;
 }

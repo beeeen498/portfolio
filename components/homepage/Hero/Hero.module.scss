@@ -17,6 +17,57 @@
   overflow: hidden;
 
   /* ========================
+     PARALLAX CODE LAYERS
+     — faded source code behind the hero text
+  ======================== */
+  .codeLayers {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+
+    /* shared layer style */
+    .codeLayer {
+      position: absolute;
+      white-space: pre;
+      font-family: "Courier New", monospace;
+      font-size: 14px;
+      color: $black;
+      line-height: 1.6;
+      transition: transform 0.1s ease-out;
+      user-select: none;
+
+      pre {
+        margin: 0;
+        font: inherit;
+        color: inherit;
+      }
+    }
+
+    /* layer 0 — closest / least movement */
+    .layer0 {
+      top: 5%;
+      left: -5%;
+      opacity: 0.15;
+    }
+
+    /* layer 1 — middle depth */
+    .layer1 {
+      top: 30%;
+      right: -10%;
+      opacity: 0.1;
+    }
+
+    /* layer 2 — deepest / most movement */
+    .layer2 {
+      bottom: 5%;
+      left: 10%;
+      opacity: 0.06;
+    }
+  }
+
+  /* ========================
      TEXT BLOCK — all 3 lines
   ======================== */
   .textBlock {
@@ -38,9 +89,12 @@
     .name {
       font-family: $font-russo;
       font-size: clamp(3rem, 10vw, 8rem);
-      color: $black;
       text-transform: uppercase;
       line-height: 1;
+      background: linear-gradient(to top, #666666, $black);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     /* line 3 — "front end developer" */
