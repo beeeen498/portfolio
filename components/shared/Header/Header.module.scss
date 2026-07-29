@@ -142,15 +142,17 @@
             font-family: $font-abel;
             font-size: 14px;
             text-transform: uppercase;
+            padding: 1px 3px;
 
             &:hover {
+              background-color: $black;
               color: $neon;
             }
           }
         }
 
         .navRow:first-child a:first-child {
-          transform: translateX(6px);
+          transform: translateX(4px);
         }
 
         /* horizontal divider */

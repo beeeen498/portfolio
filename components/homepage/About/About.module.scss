@@ -1,0 +1,109 @@
+/* ========================
+   IMPORT VARIABLES
+======================== */
+@use "@/styles/variables" as *;
+
+/* ========================
+   ABOUT SECTION
+======================== */
+.about {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: $black;
+  color: $white;
+  padding: 120px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* ========================
+     + DECORATIONS
+  ======================== */
+  .plusTop,
+  .plusBottom {
+    position: absolute;
+    font-family: "Courier New", monospace;
+    font-size: clamp(3rem, 8vw, 6rem);
+    color: $white;
+    opacity: 0.15;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  /* top left */
+  .plusTop {
+    top: 40px;
+    left: 40px;
+  }
+
+  /* bottom right */
+  .plusBottom {
+    bottom: 40px;
+    right: 40px;
+  }
+
+  /* ========================
+     CONTENT BLOCK
+  ======================== */
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 700px;
+    width: 100%;
+    gap: 16px;
+
+    /* comment line — "// who am i" */
+    .comment {
+      font-family: "Courier New", monospace;
+      font-size: clamp(0.85rem, 1.5vw, 1rem);
+      color: $white;
+      opacity: 0.3;
+    }
+
+    /* heading */
+    .heading {
+      font-family: $font-teko;
+      font-size: clamp(3rem, 8vw, 5rem);
+      color: $white;
+      letter-spacing: 0.1em;
+    }
+
+    /* ========================
+       PARAGRAPHS
+    ======================== */
+    .paragraphs {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 16px;
+
+      p {
+        font-family: $font-abel;
+        font-size: clamp(1rem, 1.5vw, 1.15rem);
+        line-height: 1.8;
+        color: $white;
+        opacity: 0.85;
+      }
+    }
+  }
+
+  /* ========================
+     MOBILE — 768px
+  ======================== */
+  @media (max-width: 768px) {
+    padding: 80px 20px;
+
+    .plusTop {
+      top: 20px;
+      left: 20px;
+    }
+
+    .plusBottom {
+      bottom: 20px;
+      right: 20px;
+    }
+  }
+}

@@ -1,30 +1,24 @@
 import Hero from "@/components/homepage/Hero/Hero";
+import About from "@/components/homepage/About/About";
 
 export default function Home() {
   return (
     <main>
-      {/* ========================
-          HERO SECTION
-      ======================== */}
+      {/* hero */}
       <section id="home">
         <Hero />
       </section>
 
-      {/* ========================
-          ABOUT SECTION
-      ======================== */}
+      {/* about */}
       <section id="about">
+        <About />
       </section>
 
-      {/* ========================
-          PROJECTS SECTION
-      ======================== */}
+      {/* projects */}
       <section id="projects">
       </section>
 
-      {/* ========================
-          CONTACT SECTION
-      ======================== */}
+      {/* contact */}
       <section id="contact">
       </section>
     </main>

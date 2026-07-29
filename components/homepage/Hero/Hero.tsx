@@ -57,6 +57,7 @@ export default function Hero() {
   const [displayedGreeting, setDisplayedGreeting] = useState("");
   const [showCursor, setShowCursor] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
+  const codeLayersRef = useRef<HTMLDivElement>(null);
   const layersRef = useRef<(HTMLDivElement | null)[]>([]);
   const greetingRef = useRef<HTMLSpanElement>(null);
   const nameRef = useRef<HTMLHeadingElement>(null);
@@ -68,6 +69,13 @@ export default function Hero() {
      + typing effect on the greeting
   ======================== */
   useEffect(() => {
+    /* fade in code layers over 1.5s */
+    gsap.to(codeLayersRef.current, {
+      opacity: 1,
+      duration: 1.5,
+      ease: "power2.out",
+    });
+
     let interval: NodeJS.Timeout;
 
     /* start typing after 0.4s */
@@ -128,7 +136,7 @@ export default function Hero() {
     if (!hero) return;
 
     /* depth multipliers — higher = moves more */
-    const depths = [0.03, 0.06, 0.09];
+    const depths = [0.03, 0.06, 0.09, 0.05];
 
     /* --- mouse movement --- */
     const handleMouse = (e: MouseEvent) => {
@@ -172,7 +180,7 @@ export default function Hero() {
       {/* ========================
           PARALLAX CODE LAYERS
       ======================== */}
-      <div className={styles.codeLayers}>
+      <div className={styles.codeLayers} ref={codeLayersRef}>
         {codeLayers.map((code, i) => (
           <div
             key={i}
