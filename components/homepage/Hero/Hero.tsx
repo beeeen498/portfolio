@@ -18,6 +18,13 @@ export default function Hero() {
         {/* line 3 — role */}
         <span className={styles.role}>front end developer</span>
       </div>
+
+      {/* ========================
+          SCROLL DOWN INDICATOR
+      ======================== */}
+      <a href="#about" className={styles.scrollIndicator} aria-label="Scroll down">
+        <span className={styles.arrow} />
+      </a>
     </section>
   );
 }
