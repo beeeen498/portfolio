@@ -75,6 +75,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    gap: 10px;
     z-index: 2;
 
     /* line 1 — "hello, i'm" */
@@ -82,28 +83,35 @@
       font-family: $font-abel;
       font-size: clamp(1.2rem, 2.5vw, 1.8rem);
       color: $black;
-      text-transform: lowercase;
+
+      /* blinking cursor during typing */
+      .cursor {
+        animation: blink 0.6s step-end infinite;
+      }
     }
 
-    /* line 2 — "BEN KEDEM" */
+    /* line 2 — "BEN KEDEM" (hidden until GSAP animates in) */
     .name {
       font-family: $font-russo;
       font-size: clamp(3rem, 10vw, 8rem);
       text-transform: uppercase;
       line-height: 1;
-      background: linear-gradient(to top, #666666, $black);
+      background: linear-gradient(to top, $grey, $black);
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      opacity: 0;
+      transform: translateY(50px);
     }
 
-    /* line 3 — "front end developer" */
+    /* line 3 — "front end developer" (hidden until GSAP animates in) */
     .role {
       font-family: $font-syncopate;
       font-size: clamp(0.7rem, 1.8vw, 1.2rem);
       color: $black;
-      text-transform: lowercase;
       letter-spacing: 0.3em;
+      opacity: 0;
+      transform: translateY(30px);
     }
   }
 
@@ -120,6 +128,7 @@
     justify-content: center;
     cursor: pointer;
     z-index: 2;
+    opacity: 0;
 
     /* animated arrow */
     .arrow {
@@ -138,19 +147,15 @@
    BOUNCE ANIMATION
 ======================== */
 @keyframes bounce {
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
+  0% {
     opacity: 1;
   }
 
-  40% {
+  50% {
     opacity: 0;
   }
 
-  60% {
+  100% {
     opacity: 1;
   }
 }

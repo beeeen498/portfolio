@@ -1,8 +1,14 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import styles from "./Hero.module.scss";
+
+/* ========================
+   GREETING TEXT — used for typing effect
+======================== */
+const GREETING = "Hello, I'm";
+const TYPING_SPEED = 120; // ms per letter
 
 /* ========================
    CODE SNIPPETS — your own source code
@@ -48,6 +54,8 @@ h1, h2, h3 {
 ];
 
 export default function Hero() {
+  const [displayedGreeting, setDisplayedGreeting] = useState("");
+  const [showCursor, setShowCursor] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
   const layersRef = useRef<(HTMLDivElement | null)[]>([]);
   const greetingRef = useRef<HTMLSpanElement>(null);
@@ -57,41 +65,59 @@ export default function Hero() {
 
   /* ========================
      GSAP — slide-in on page load
+     + typing effect on the greeting
   ======================== */
   useEffect(() => {
-    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+    let interval: NodeJS.Timeout;
 
-    tl.from(greetingRef.current, {
-      y: 30,
-      opacity: 0,
-      duration: 0.6,
-    })
-      .from(
-        nameRef.current,
-        {
-          y: 50,
-          opacity: 0,
-          duration: 0.8,
-        },
-        "-=0.3",
-      )
-      .from(
-        roleRef.current,
-        {
-          y: 30,
-          opacity: 0,
-          duration: 0.6,
-        },
-        "-=0.3",
-      )
-      .from(
-        scrollRef.current,
-        {
-          opacity: 0,
-          duration: 0.5,
-        },
-        "-=0.2",
-      );
+    /* start typing after 0.4s */
+    const delay = setTimeout(() => {
+      setShowCursor(true);
+      let i = 0;
+      interval = setInterval(() => {
+        i++;
+        setDisplayedGreeting(GREETING.slice(0, i));
+
+        /* done typing — hide cursor, slide in name + role + scroll */
+        if (i >= GREETING.length) {
+          clearInterval(interval);
+          setShowCursor(false);
+
+          const tl = gsap.timeline({
+            defaults: { ease: "power3.out" },
+            delay: 0.4,
+          });
+
+          tl.to(nameRef.current, {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+          })
+            .to(
+              roleRef.current,
+              {
+                y: 0,
+                opacity: 1,
+                duration: 0.6,
+              },
+              "-=0.3",
+            )
+            .to(
+              scrollRef.current,
+              {
+                opacity: 1,
+                duration: 0.5,
+              },
+              "-=0.2",
+            );
+        }
+      }, TYPING_SPEED);
+    }, 500);
+
+    return () => {
+      clearTimeout(delay);
+      clearInterval(interval);
+    };
   }, []);
 
   /* ========================
@@ -164,19 +190,20 @@ export default function Hero() {
           HERO TEXT
       ======================== */}
       <div className={styles.textBlock}>
-        {/* line 1 — greeting */}
+        {/* line 1 — greeting (typing effect) */}
         <span className={styles.greeting} ref={greetingRef}>
-          hello, i&apos;m
+          {displayedGreeting}
+          {showCursor && <span className={styles.cursor}>|</span>}
         </span>
 
         {/* line 2 — name */}
         <h1 className={styles.name} ref={nameRef}>
-          BEN KEDEM
+          BEN KEDEM.
         </h1>
 
         {/* line 3 — role */}
         <span className={styles.role} ref={roleRef}>
-          front end developer
+          A front end developer
         </span>
       </div>
 
