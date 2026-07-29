@@ -1,3 +1,5 @@
+import Hero from "@/components/homepage/Hero/Hero";
+
 export default function Home() {
   return (
     <main>
@@ -5,6 +7,7 @@ export default function Home() {
           HERO SECTION
       ======================== */}
       <section id="home">
+        <Hero />
       </section>
 
       {/* ========================

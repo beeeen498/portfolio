@@ -1,0 +1,55 @@
+/* ========================
+   IMPORT VARIABLES
+======================== */
+@use "@/styles/variables" as *;
+
+/* ========================
+   HERO SECTION
+======================== */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: calc(100vh - var(--header-height));
+  background-color: $grey;
+  overflow: hidden;
+
+  /* ========================
+     TEXT BLOCK — all 3 lines
+  ======================== */
+  .textBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    z-index: 2;
+
+    /* line 1 — "hello, i'm" */
+    .greeting {
+      font-family: $font-abel;
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      color: $black;
+      text-transform: lowercase;
+    }
+
+    /* line 2 — "BEN KEDEM" */
+    .name {
+      font-family: $font-russo;
+      font-size: clamp(3rem, 10vw, 8rem);
+      color: $black;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    /* line 3 — "front end developer" */
+    .role {
+      font-family: $font-syncopate;
+      font-size: clamp(0.7rem, 1.8vw, 1.2rem);
+      color: $black;
+      text-transform: lowercase;
+      letter-spacing: 0.3em;
+    }
+  }
+}
