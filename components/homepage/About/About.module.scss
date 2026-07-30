@@ -87,6 +87,20 @@
         color: $white;
         opacity: 0;
       }
+
+      /* neon highlighted keywords */
+      .neon {
+        color: $neon;
+        font-weight: 700;
+        cursor: default;
+        transition: text-shadow 0.3s ease;
+
+        &:hover {
+          text-shadow:
+            0 0 8px $neon,
+            0 0 20px $neon;
+        }
+      }
     }
   }
 

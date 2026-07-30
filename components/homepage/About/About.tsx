@@ -78,20 +78,30 @@ export default function About() {
 
         {/* paragraphs */}
         <div className={styles.paragraphs}>
-          {[
-            "First paragraph goes here.",
-            "Second paragraph goes here.",
-            "Third paragraph goes here.",
-          ].map((text, i) => (
-            <p
-              key={i}
-              ref={(el) => {
-                paragraphsRef.current[i] = el;
-              }}
-            >
-              {text}
-            </p>
-          ))}
+          <p
+            ref={(el) => {
+              paragraphsRef.current[0] = el;
+            }}
+          >
+            First paragraph with a{" "}
+            <span className={styles.neon}>highlighted keyword</span> goes here.
+          </p>
+          <p
+            ref={(el) => {
+              paragraphsRef.current[1] = el;
+            }}
+          >
+            Second paragraph with{" "}
+            <span className={styles.neon}>another keyword</span> goes here.
+          </p>
+          <p
+            ref={(el) => {
+              paragraphsRef.current[2] = el;
+            }}
+          >
+            Third paragraph with{" "}
+            <span className={styles.neon}>one more keyword</span> goes here.
+          </p>
         </div>
       </div>
 
