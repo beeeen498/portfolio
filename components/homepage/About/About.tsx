@@ -1,14 +1,70 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./About.module.scss";
 
+/* register ScrollTrigger plugin */
+gsap.registerPlugin(ScrollTrigger);
+
 export default function About() {
+  const plusTopRef = useRef<HTMLSpanElement>(null);
+  const plusBottomRef = useRef<HTMLSpanElement>(null);
+  const paragraphsRef = useRef<(HTMLParagraphElement | null)[]>([]);
+
+  useEffect(() => {
+    /* ========================
+       + DECORATIONS — fade in
+    ======================== */
+    gsap.to([plusTopRef.current, plusBottomRef.current], {
+      opacity: 0.45,
+      duration: 1.2,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: plusTopRef.current,
+        start: "top 80%",
+      },
+    });
+
+    /* ========================
+       PARAGRAPHS — slide in / out one by one
+    ======================== */
+    paragraphsRef.current.forEach((p) => {
+      if (!p) return;
+
+      gsap.fromTo(
+        p,
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 0.85,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: p,
+            start: "top 85%",
+            end: "top 20%",
+            toggleActions: "play reverse play reverse",
+          },
+        },
+      );
+    });
+
+    /* cleanup scroll triggers on unmount */
+    return () => {
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+    };
+  }, []);
+
   return (
     <section id="about" className={styles.about}>
       {/* ========================
           + DECORATION — top left
       ======================== */}
-      <span className={styles.plusTop}>+</span>
+      <span className={styles.plusTop} ref={plusTopRef}>
+        +++
+      </span>
 
       {/* ========================
           CONTENT BLOCK
@@ -22,16 +78,29 @@ export default function About() {
 
         {/* paragraphs */}
         <div className={styles.paragraphs}>
-          <p>First paragraph goes here.</p>
-          <p>Second paragraph goes here.</p>
-          <p>Third paragraph goes here.</p>
+          {[
+            "First paragraph goes here.",
+            "Second paragraph goes here.",
+            "Third paragraph goes here.",
+          ].map((text, i) => (
+            <p
+              key={i}
+              ref={(el) => {
+                paragraphsRef.current[i] = el;
+              }}
+            >
+              {text}
+            </p>
+          ))}
         </div>
       </div>
 
       {/* ========================
           + DECORATION — bottom right
       ======================== */}
-      <span className={styles.plusBottom}>+</span>
+      <span className={styles.plusBottom} ref={plusBottomRef}>
+        +++
+      </span>
     </section>
   );
 }
