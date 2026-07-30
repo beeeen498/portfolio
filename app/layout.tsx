@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Teko, Russo_One, Abel, Syncopate } from "next/font/google";
+import { LoaderProvider } from "@/context/LoaderContext";
+import Loader from "@/components/shared/Loader/Loader";
 import Header from "@/components/shared/Header/Header";
 import Footer from "@/components/shared/Footer/Footer";
 import "@/app/main.scss";
@@ -61,9 +63,12 @@ export default function RootLayout({
       className={`${teko.variable} ${russoOne.variable} ${abel.variable} ${syncopate.variable}`}
     >
       <body>
-        <Header />
-        {children}
-        <Footer />
+        <LoaderProvider>
+          <Loader />
+          <Header />
+          {children}
+          <Footer />
+        </LoaderProvider>
       </body>
     </html>
   );

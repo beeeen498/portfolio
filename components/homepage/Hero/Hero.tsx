@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useLoader } from "@/context/LoaderContext";
 import gsap from "gsap";
 import styles from "./Hero.module.scss";
 
@@ -63,12 +64,16 @@ export default function Hero() {
   const nameRef = useRef<HTMLHeadingElement>(null);
   const roleRef = useRef<HTMLSpanElement>(null);
   const scrollRef = useRef<HTMLAnchorElement>(null);
+  const { isLoading } = useLoader();
 
   /* ========================
      GSAP — slide-in on page load
      + typing effect on the greeting
   ======================== */
   useEffect(() => {
+    /* don't start until loader is done */
+    if (isLoading) return;
+
     /* fade in code layers over 1.5s */
     gsap.to(codeLayersRef.current, {
       opacity: 1,
@@ -126,7 +131,7 @@ export default function Hero() {
       clearTimeout(delay);
       clearInterval(interval);
     };
-  }, []);
+  }, [isLoading]);
 
   /* ========================
      PARALLAX — scroll + mouse
