@@ -1,0 +1,140 @@
+/* ========================
+   IMPORT VARIABLES
+======================== */
+@use "@/styles/variables" as *;
+
+/* ========================
+   FOOTER
+======================== */
+.footer {
+  width: 100%;
+  background-color: $black;
+  color: $white;
+  padding: 60px 24px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+
+  /* ========================
+     NAV LINKS
+  ======================== */
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+
+    a {
+      font-family: $font-abel;
+      font-size: 14px;
+      text-transform: uppercase;
+      color: $white;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: $neon;
+      }
+    }
+  }
+
+  /* ========================
+     DIVIDER LINE
+  ======================== */
+  .divider {
+    width: 100%;
+    max-width: 600px;
+    height: 1px;
+    background-color: $white;
+    opacity: 0.2;
+  }
+
+  /* ========================
+     BOTTOM — credit + copyright
+  ======================== */
+  .bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+
+    /* created by link */
+    .credit {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: $font-abel;
+      font-size: 14px;
+      color: $white;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: $neon;
+      }
+
+      .linkedinIcon {
+        font-size: 14px;
+      }
+    }
+
+    /* copyright */
+    .copyright {
+      font-family: $font-abel;
+      font-size: 13px;
+      color: $white;
+      opacity: 0.4;
+    }
+  }
+
+  /* ========================
+     BACK TO TOP BUTTON
+  ======================== */
+  .backToTop {
+    margin-top: 16px;
+    background: none;
+    border: 1px solid $white;
+    color: $white;
+    font-family: $font-abel;
+    font-size: 13px;
+    padding: 8px 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease,
+      transform 0.3s ease;
+
+    /* bounce on hover */
+    &:hover {
+      background-color: $neon;
+      color: $black;
+      border-color: $neon;
+      animation: bounce 0.6s ease infinite;
+    }
+  }
+
+  /* ========================
+     MOBILE — 768px
+  ======================== */
+  @media (max-width: 768px) {
+    padding: 40px 20px 32px;
+
+    .nav {
+      flex-direction: column;
+      gap: 16px;
+    }
+  }
+}
+
+/* ========================
+   BOUNCE ANIMATION
+======================== */
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
