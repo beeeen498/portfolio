@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useLoader } from "@/context/LoaderContext";
 import styles from "./Header.module.scss";
 
 /* ---- icons ---- */
@@ -10,8 +11,11 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [hasMounted, setHasMounted] = useState(false);
+  const { isLoading } = useLoader();
 
   useEffect(() => {
+    if (isLoading) return;
+
     const handleResize = () => {
       const mobile = window.innerWidth <= 768;
       setIsMobile(mobile);
@@ -24,7 +28,7 @@ export default function Header() {
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [isLoading]);
 
   return (
     <header className={`${styles.header} ${hasMounted ? styles.mounted : ""}`}>
