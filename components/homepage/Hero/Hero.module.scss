@@ -12,7 +12,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: calc(100vh - var(--header-height));
+  height: calc(100vh - $header-height);
   background-color: $grey;
   overflow: hidden;
 
@@ -97,7 +97,7 @@
       font-size: clamp(3rem, 10vw, 8rem);
       text-transform: uppercase;
       line-height: 1;
-      background: linear-gradient(to top, $grey, $black);
+      background: linear-gradient(to top, $grey 13%, $black 40%);
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;

@@ -1,5 +1,6 @@
 import Hero from "@/components/homepage/Hero/Hero";
 import About from "@/components/homepage/About/About";
+import Contact from "@/components/homepage/Contact/Contact";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
 
       {/* contact */}
       <section id="contact">
+        <Contact />
       </section>
     </main>
   );

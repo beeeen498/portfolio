@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Teko, Russo_One, Abel, Syncopate } from "next/font/google";
 import Header from "@/components/shared/Header/Header";
-import Footer from "@/components/shared/Header/Footer/Footer";
+import Footer from "@/components/shared/Footer/Footer";
 import "@/app/main.scss";
 
 // fonts

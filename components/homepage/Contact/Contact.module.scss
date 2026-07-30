@@ -1,0 +1,218 @@
+/* ========================
+   IMPORT VARIABLES
+======================== */
+@use "@/styles/variables" as *;
+
+/* ========================
+   CONTACT SECTION
+======================== */
+.contact {
+  position: relative;
+  width: 100%;
+  min-height: auto;
+  background-color: $neon;
+  color: $black;
+  padding: 120px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* ========================
+     CONTENT WRAPPER
+  ======================== */
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    gap: 16px;
+
+    /* heading — "CONTACT" */
+    .heading {
+      font-family: $font-teko;
+      font-size: clamp(3rem, 8vw, 5rem);
+      color: $black;
+      letter-spacing: 0.1em;
+      text-align: center;
+    }
+  }
+
+  /* ========================
+     FORM
+  ======================== */
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    width: 100%;
+  }
+
+  /* ========================
+     INPUT GROUP
+     — wrapper for each input + floating label + error
+  ======================== */
+  .inputGroup {
+    position: relative;
+    width: 100%;
+    opacity: 0;
+
+    /* shared input / textarea base */
+    .input,
+    .textarea {
+      width: 100%;
+      background: none;
+      border: none;
+      border-bottom: 2px solid $black;
+      color: $black;
+      font-family: $font-abel;
+      font-size: 1rem;
+      padding: 12px 0 8px;
+      outline: none;
+      transition: border-color 0.3s ease;
+
+      /* focus — border highlight */
+      &:focus {
+        border-bottom-color: $black;
+      }
+
+      /* when input has value or is focused — slide label up */
+      &:focus + .label,
+      &.filled + .label {
+        top: -14px;
+        font-size: 0.75rem;
+        opacity: 0.6;
+      }
+    }
+
+    input:-webkit-autofill,
+    textarea:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 1000px $neon inset;
+      -webkit-text-fill-color: $black;
+    }
+
+    /* textarea specific */
+    .textarea {
+      resize: vertical;
+      min-height: 100px;
+      resize: none;
+    }
+
+    /* floating label */
+    .label {
+      position: absolute;
+      top: 12px;
+      left: 0;
+      font-family: $font-abel;
+      font-size: 1rem;
+      color: $black;
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    /* error message — below input */
+    .error {
+      font-family: $font-abel;
+      font-size: 0.8rem;
+      color: $black;
+      margin-top: 6px;
+      font-weight: 700;
+    }
+
+    /* error state — change border */
+    &.hasError {
+      .input,
+      .textarea {
+        border-bottom-color: $black;
+      }
+    }
+  }
+
+  /* ========================
+     SUBMIT BUTTON
+  ======================== */
+  .submitBtn {
+    align-self: center;
+    background-color: $black;
+    color: $neon;
+    font-family: $font-abel;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 14px 48px;
+    border: 2px solid $black;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0;
+
+    &:hover {
+      background-color: transparent;
+      color: $black;
+    }
+
+    /* disabled — while sending */
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+
+      &:hover {
+        background-color: $black;
+        color: $neon;
+      }
+    }
+  }
+
+  /* ========================
+     SUCCESS MESSAGE
+     — replaces the form after sending
+  ======================== */
+  .success {
+    font-family: $font-teko;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    color: $black;
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+
+  /* +++ decorations */
+  .plusTop,
+  .plusBottom {
+    position: absolute;
+    font-family: "Courier New", monospace;
+    font-size: clamp(3rem, 8vw, 6rem);
+    color: $black;
+    opacity: 0;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .plusTop {
+    top: 40px;
+    left: 40px;
+  }
+
+  .plusBottom {
+    bottom: 40px;
+    right: 40px;
+  }
+
+  /* comment line — "// get in touch" */
+  .comment {
+    font-family: "Courier New", monospace;
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
+    color: $black;
+    opacity: 0.5;
+  }
+
+  /* ========================
+     MOBILE — 768px
+  ======================== */
+  @media (max-width: 768px) {
+    padding: 80px 20px;
+
+    .submitBtn {
+      align-self: stretch;
+      text-align: center;
+    }
+  }
+}
