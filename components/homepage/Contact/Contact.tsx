@@ -147,8 +147,15 @@ export default function Contact() {
   };
 
   /* ========================
+   INIT EMAILJS
+  ======================== */
+  useEffect(() => {
+    emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!);
+  }, []);
+
+  /* ========================
    HANDLE SUBMIT
-======================== */
+  ======================== */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -176,6 +183,7 @@ export default function Contact() {
       setStatus("default");
     }
   };
+  console.log(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
 
   /* ========================
      RENDER — SUCCESS STATE
