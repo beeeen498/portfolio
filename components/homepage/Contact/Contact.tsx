@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import emailjs from "@emailjs/browser";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./Contact.module.scss";
@@ -146,8 +147,8 @@ export default function Contact() {
   };
 
   /* ========================
-     HANDLE SUBMIT
-  ======================== */
+   HANDLE SUBMIT
+======================== */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -157,9 +158,19 @@ export default function Contact() {
     /* set sending state */
     setStatus("sending");
 
-    /* TODO: replace with EmailJS integration */
+    /* send email via EmailJS */
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      await emailjs.send(
+        "beeeen498",
+        "template_w6x4i4b",
+        {
+          to_name: "Ben",
+          from_name: formData.fullName,
+          message: formData.message,
+          user_email: formData.email,
+        },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
+      );
       setStatus("sent");
     } catch {
       setStatus("default");
