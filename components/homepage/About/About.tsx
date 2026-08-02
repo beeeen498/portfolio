@@ -83,24 +83,36 @@ export default function About() {
               paragraphsRef.current[0] = el;
             }}
           >
-            First paragraph with a{" "}
-            <span className={styles.neon}>highlighted keyword</span> goes here.
+            I'm a front-end developer who turns ideas into interactive, polished
+            web experiences. I work with{" "}
+            <span className={styles.neon}>Next.js</span>,{" "}
+            <span className={styles.neon}>SCSS</span>,{" "}
+            <span className={styles.neon}>Three.js</span>, and{" "}
+            <span className={styles.neon}>GSAP</span> - tools that let me push
+            pixels and performance as far as they'll go.
           </p>
+
           <p
             ref={(el) => {
               paragraphsRef.current[1] = el;
             }}
           >
-            Second paragraph with{" "}
-            <span className={styles.neon}>another keyword</span> goes here.
+            I got into development because I've always been drawn to{" "}
+            <span className={styles.neon}>creative work</span>. Building
+            websites is where{" "}
+            <span className={styles.neon}>design meets logic</span> - and that's
+            where I thrive.
           </p>
+
           <p
             ref={(el) => {
               paragraphsRef.current[2] = el;
             }}
           >
-            Third paragraph with{" "}
-            <span className={styles.neon}>one more keyword</span> goes here.
+            When I'm not coding, I enjoy reading, gardening, cooking, or
+            baking. I bring the same{" "}
+            <span className={styles.neon}>attention to detail</span> to
+            everything I do.
           </p>
         </div>
       </div>
