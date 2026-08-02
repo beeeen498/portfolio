@@ -59,9 +59,6 @@
 
     /* created by link */
     .credit {
-      display: flex;
-      align-items: center;
-      gap: 8px;
       font-family: $font-abel;
       font-size: 14px;
       color: $white;
@@ -73,6 +70,10 @@
 
       .linkedinIcon {
         font-size: 14px;
+      }
+
+      .footerName{
+        text-decoration: underline;
       }
     }
 

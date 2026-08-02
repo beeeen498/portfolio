@@ -1,0 +1,172 @@
+/* ========================
+   IMPORT VARIABLES
+======================== */
+@use "@/styles/variables" as *;
+
+/* ========================
+   SCREEN READER ONLY
+======================== */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* ========================
+   PROJECTS SECTION
+======================== */
+.projects {
+  position: relative;
+  width: 100%;
+  background-color: $grey;
+  color: $black;
+  padding: 61px 24px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* comment line — "// my work" */
+  .comment {
+    font-family: "Courier New", monospace;
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
+    color: $black;
+    opacity: 0.5;
+  }
+
+  /* ========================
+     INFO ROW — name right, details left
+  ======================== */
+  .infoRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 900px;
+    gap: 40px;
+    margin-top: 16px;
+  }
+
+  /* details — left side */
+  .projectDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    text-align: left;
+  }
+
+  /* summary */
+  .projectSummary {
+    font-family: $font-abel;
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+    line-height: 1.6;
+    opacity: 0.8;
+    max-width: 400px;
+  }
+
+  /* badges row */
+  .projectBadges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  /* project name — right side */
+  .projectName {
+    font-family: $font-teko;
+    font-size: clamp(2rem, 5vw, 3rem);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  /* single badge */
+  .projectBadge {
+    font-family: $font-abel;
+    font-size: 0.8rem;
+    padding: 4px 12px;
+    border: 1px solid $black;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* ========================
+     CAROUSEL WRAPPER
+  ======================== */
+  .carouselWrapper {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    height: 500px;
+    overflow: hidden;
+  }
+
+  /* view project button */
+  .detailButton {
+    position: absolute;
+    bottom: 10;
+    display: inline-block;
+    margin-top: 12px;
+    background-color: $black;
+    color: $grey;
+    font-family: $font-abel;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 12px 40px;
+    border: 2px solid $black;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 2;
+
+    &:hover {
+      background-color: transparent;
+      color: $black;
+    }
+  }
+
+  /* ========================
+     tablet — 815px
+  ======================== */
+  @media (max-width: 815px) {
+    padding: 80px 0 0;
+
+    /* stack name + details vertically */
+    .infoRow {
+      flex-direction: column-reverse;
+      gap: 12px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .projectDetails {
+      align-items: center;
+      text-align: center;
+    }
+
+    .projectBadges {
+      justify-content: center;
+    }
+
+    .carouselWrapper {
+      height: 400px;
+    }
+  }
+
+  /* ========================
+     mobile — 768px
+  ======================== */
+  @media (max-width: 768px) {
+    .detailButton {
+      padding: 12px 15px;
+    }
+  }
+}

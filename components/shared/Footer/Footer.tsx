@@ -39,8 +39,7 @@ export default function Footer() {
           rel="noopener noreferrer"
           className={styles.credit}
         >
-          Created by Ben Kedem
-          <FaLinkedinIn className={styles.linkedinIcon} />
+          Created by <span className={styles.footerName}>Ben Kedem</span>
         </a>
 
         {/* copyright */}

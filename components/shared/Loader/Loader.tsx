@@ -21,7 +21,7 @@ const loadingWords = [
   "Carregando", // Portuguese
 ];
 
-const CYCLE_SPEED = 300; // ms between each word
+const CYCLE_SPEED = 400; // ms between each word
 const MIN_DURATION = 3000; // minimum 3 seconds on screen
 
 export default function Loader() {

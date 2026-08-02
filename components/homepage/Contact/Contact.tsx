@@ -183,7 +183,6 @@ export default function Contact() {
       setStatus("default");
     }
   };
-  console.log(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
 
   /* ========================
      RENDER — SUCCESS STATE

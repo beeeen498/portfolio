@@ -25,50 +25,7 @@
     display: flex;
     align-items: center;
     font-family: "Courier New", monospace;
-    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    font-size: clamp(1.4rem, 4vw, 2.8rem);
     color: $white;
-
-    /* ========================
-       SLOT MACHINE — window that shows 3 words
-       clipped to 3 lines tall (1.6em × 3)
-    ======================== */
-    .slot {
-      height: 4.8em; /* 3 lines × 1.6em */
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-
-      /* ========================
-         SLOT TRACK — tall column of all words
-         slides up on each cycle
-      ======================== */
-      .slotTrack {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        transition: transform 0.3s ease;
-
-        /* each word */
-        span {
-          display: block;
-          white-space: nowrap;
-          height: 1.6em;
-          line-height: 1.6em;
-          text-align: center;
-        }
-
-        /* blurry — words above and below center */
-        .blurry {
-          filter: blur(2.5px);
-          opacity: 0.25;
-        }
-
-        /* active — the centered clear word */
-        .active {
-          opacity: 1;
-          filter: none;
-        }
-      }
-    }
   }
 }
