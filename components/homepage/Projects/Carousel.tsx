@@ -19,10 +19,10 @@ interface CarouselProps {
 function getResponsiveValues() {
   const w = window.innerWidth;
 
-  if (w < 480) return { radius: 160, cardW: 80, cardH: 130 };
-  if (w < 768) return { radius: 200, cardW: 100, cardH: 160 };
-  if (w < 1440) return { radius: 280, cardW: 130, cardH: 210 };
-  return { radius: 320, cardW: 150, cardH: 240 };
+  if (w < 480) return { radius: 160, cardW: 130, cardH: 80 };
+  if (w < 768) return { radius: 200, cardW: 160, cardH: 100 };
+  if (w < 1440) return { radius: 280, cardW: 210, cardH: 130 };
+  return { radius: 320, cardW: 240, cardH: 150 };
 }
 
 // ── Component ────────────────────────────────────────────
@@ -148,7 +148,6 @@ export default function Carousel({
       if (!card) return;
       gsap.killTweensOf(card);
       card.removeAttribute("style");
-      card.style.backgroundColor = projects[i].color;
     });
 
     // ── Reposition on resize ──────────────────────────
@@ -285,7 +284,7 @@ export default function Carousel({
               if (el) cardsRef.current[i] = el;
             }}
             className={styles.card}
-            style={{ backgroundColor: project.color }}
+            // style={{ backgroundColor: project.color }}
             onClick={() => {
               const activeIndex = getActiveIndex(rotationRef.current);
               if (i === activeIndex) {
@@ -297,7 +296,11 @@ export default function Carousel({
               }
             }}
           >
-            {project.name.en}
+            <img
+              src={project.image}
+              alt={project.name.en}
+              className={styles.cardImage}
+            />
           </div>
         ))}
       </div>

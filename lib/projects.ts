@@ -7,7 +7,6 @@ export type Project = {
   name: { en: string; he: string };
   summary: { en: string; he: string };
   stack: string[];
-  color: string;
   image: string;
   url: string;
 };
@@ -17,27 +16,36 @@ export type Project = {
 ======================== */
 export const projects: Project[] = [
   {
-  id: 1,
-  order: 1,
-  name: { en: "Weather App", he: "אפליקציית מזג אוויר" },
-  summary: {
-    en: "A real-time weather dashboard with location search, 7-day forecast, and animated weather icons.",
-    he: "לוח מזג אוויר בזמן אמת עם חיפוש מיקום, תחזית ל-7 ימים ואייקונים מונפשים."
+    id: 1,
+    order: 1,
+    name: { en: "Smash'd", he: "Smash'd" },
+    summary: {
+      en: "A full-stack burger restaurant app with a 3D burger builder, secret menu discovery flow, and admin dashboard.",
+      he: "אפליקציית מסעדת המבורגרים פול-סטאק עם בונה המבורגר תלת-ממדי, תפריט סודי ולוח ניהול.",
+    },
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "SCSS",
+      "Supabase",
+      "React Three Fiber",
+      "Zustand",
+      "GSAP",
+    ],
+    image: "/projects/smashd.png",
+    url: "https://smashd-beta.vercel.app/",
   },
-  stack: ["React", "TypeScript", "SCSS", "OpenWeather API"],
-  color: "#4A90D9",
-  image: "/projects/weather-app.png",
-  url: "https://weather-app-ben.vercel.app",
-},
   {
     id: 2,
     order: 2,
-    name: { en: "Project Two", he: "פרויקט שניים" },
-    summary: { en: "Short description goes here.", he: "תיאור קצר כאן." },
-    stack: [],
-    color: "#cccccc",
-    image: "/projects/project-2.png",
-    url: "https://project-two.vercel.app",
+    name: { en: "Veni, Vidi, Vici", he: "Veni, Vidi, Vici" },
+    summary: {
+      en: "A modern Italian restaurant website featuring a scroll-scrubbing video hero, GSAP-animated sections, and a reservation flow with inline validation.",
+      he: "אתר מסעדה איטלקית מודרנית עם וידאו נגלל בהירו, אנימציות GSAP וטופס הזמנת שולחן עם ולידציה.",
+    },
+    stack: ["Next.js", "TypeScript", "SCSS", "GSAP", "Playwright"],
+    image: "/projects/veni-vidi-vici.png",
+    url: "https://vini-vidi-vici.vercel.app/",
   },
   {
     id: 3,
@@ -45,7 +53,6 @@ export const projects: Project[] = [
     name: { en: "Project Three", he: "פרויקט שלוש" },
     summary: { en: "Short description goes here.", he: "תיאור קצר כאן." },
     stack: [],
-    color: "#cccccc",
     image: "/projects/project-3.png",
     url: "https://project-three.vercel.app",
   },
@@ -55,7 +62,6 @@ export const projects: Project[] = [
     name: { en: "Project Four", he: "פרויקט ארבע" },
     summary: { en: "Short description goes here.", he: "תיאור קצר כאן." },
     stack: [],
-    color: "#cccccc",
     image: "/projects/project-4.png",
     url: "https://project-four.vercel.app",
   },
@@ -65,7 +71,6 @@ export const projects: Project[] = [
     name: { en: "Project Five", he: "פרויקט חמש" },
     summary: { en: "Short description goes here.", he: "תיאור קצר כאן." },
     stack: [],
-    color: "#cccccc",
     image: "/projects/project-5.png",
     url: "https://project-five.vercel.app",
   },
