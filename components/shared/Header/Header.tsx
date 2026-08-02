@@ -12,6 +12,7 @@ export default function Header() {
   const [isMobile, setIsMobile] = useState(false);
   const [hasMounted, setHasMounted] = useState(false);
   const { isLoading } = useLoader();
+  const [onDarkSection, setOnDarkSection] = useState(false);
 
   useEffect(() => {
     if (isLoading) return;
@@ -29,6 +30,30 @@ export default function Header() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [isLoading]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ["home", "about", "projects", "contact"];
+      const headerHeight = 89;
+      let currentSection = "";
+
+      sections.forEach((id) => {
+        const section = document.getElementById(id);
+        if (!section) return;
+        const top = section.getBoundingClientRect().top;
+        const bottom = section.getBoundingClientRect().bottom;
+
+        if (top <= headerHeight && bottom > headerHeight) {
+          currentSection = id;
+        }
+      });
+
+      setOnDarkSection(currentSection === "about");
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <header className={`${styles.header} ${hasMounted ? styles.mounted : ""}`}>
@@ -62,7 +87,10 @@ export default function Header() {
       {/* ========================
           BOTTOM ROW
       ======================== */}
-      <div className={styles.bottomRow}>
+      <div
+        className={`${styles.bottomRow} ${onDarkSection ? styles.onDark : ""}`}
+      >
+        {" "}
         {/* ---- left column (logo + nav) ---- */}
         <div className={styles.leftCol}>
           {/* logo */}
@@ -102,7 +130,6 @@ export default function Header() {
             </div>
           </nav>
         </div>
-
         {/* ---- right column (menu button) ---- */}
         <div className={styles.rightCol}>
           <button

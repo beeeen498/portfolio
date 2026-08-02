@@ -43,7 +43,7 @@ export default function About() {
           ease: "power3.out",
           scrollTrigger: {
             trigger: p,
-            start: "top 85%",
+            start: "top 100%",
             end: "top 20%",
             toggleActions: "play reverse play reverse",
           },
