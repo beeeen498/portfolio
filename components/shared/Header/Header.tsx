@@ -12,8 +12,11 @@ export default function Header() {
   const [isMobile, setIsMobile] = useState(false);
   const [hasMounted, setHasMounted] = useState(false);
   const { isLoading } = useLoader();
-  const [onDarkSection, setOnDarkSection] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
+  /* ========================
+     RESIZE — detect mobile / desktop
+  ======================== */
   useEffect(() => {
     if (isLoading) return;
 
@@ -31,11 +34,14 @@ export default function Header() {
     return () => window.removeEventListener("resize", handleResize);
   }, [isLoading]);
 
+  /* ========================
+     SCROLL — track active section
+  ======================== */
   useEffect(() => {
     const handleScroll = () => {
       const sections = ["home", "about", "projects", "contact"];
       const headerHeight = 89;
-      let currentSection = "";
+      let current = "";
 
       sections.forEach((id) => {
         const section = document.getElementById(id);
@@ -44,11 +50,11 @@ export default function Header() {
         const bottom = section.getBoundingClientRect().bottom;
 
         if (top <= headerHeight && bottom > headerHeight) {
-          currentSection = id;
+          current = id;
         }
       });
 
-      setOnDarkSection(currentSection === "about");
+      setActiveSection(current);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -57,7 +63,6 @@ export default function Header() {
 
   return (
     <header className={`${styles.header} ${hasMounted ? styles.mounted : ""}`}>
-      {" "}
       {/* ========================
           TOP ROW
       ======================== */}
@@ -79,18 +84,18 @@ export default function Header() {
             <FaLinkedinIn />
           </a>
 
-          <a href="#contact" className={styles.iconLink}>
+          <a href="/#contact" className={styles.iconLink}>
             <FaEnvelope />
           </a>
         </div>
       </div>
+
       {/* ========================
           BOTTOM ROW
       ======================== */}
       <div
-        className={`${styles.bottomRow} ${onDarkSection ? styles.onDark : ""}`}
+        className={`${styles.bottomRow} ${activeSection === "about" ? styles.onDark : ""}`}
       >
-        {" "}
         {/* ---- left column (logo + nav) ---- */}
         <div className={styles.leftCol}>
           {/* logo */}
@@ -106,11 +111,16 @@ export default function Header() {
           {/* navigation */}
           <nav className={`${styles.nav} ${!menuOpen ? styles.navClosed : ""}`}>
             <div className={styles.navRow}>
-              <a href="/#home" onClick={() => isMobile && setMenuOpen(false)}>
+              <a
+                href="/#home"
+                className={activeSection === "home" ? styles.active : ""}
+                onClick={() => isMobile && setMenuOpen(false)}
+              >
                 Home
               </a>
               <a
                 href="/#projects"
+                className={activeSection === "projects" ? styles.active : ""}
                 onClick={() => isMobile && setMenuOpen(false)}
               >
                 Projects
@@ -121,11 +131,17 @@ export default function Header() {
             <div className={styles.dividerHorizontal} />
 
             <div className={styles.navRow}>
-              <a href="/#about" onClick={() => isMobile && setMenuOpen(false)}>
+              <a
+                href="/#about"
+                className={activeSection === "about" ? styles.active : ""}
+                onClick={() => isMobile && setMenuOpen(false)}
+              >
                 About
               </a>
+              
               <a
                 href="/#contact"
+                className={activeSection === "contact" ? styles.active : ""}
                 onClick={() => isMobile && setMenuOpen(false)}
               >
                 Contact
@@ -133,6 +149,7 @@ export default function Header() {
             </div>
           </nav>
         </div>
+
         {/* ---- right column (menu button) ---- */}
         <div className={styles.rightCol}>
           <button
@@ -145,6 +162,7 @@ export default function Header() {
           </button>
         </div>
       </div>
+
       {/* ========================
           MOBILE OVERLAY
       ======================== */}
@@ -152,16 +170,35 @@ export default function Header() {
         className={`${styles.mobileOverlay} ${menuOpen && isMobile && hasMounted ? styles.overlayOpen : ""}`}
       >
         <nav className={styles.mobileNav}>
-          <a href="/#home" onClick={() => setMenuOpen(false)}>
+          <a
+            href="/#home"
+            className={activeSection === "home" ? styles.active : ""}
+            onClick={() => setMenuOpen(false)}
+          >
             Home
           </a>
-          <a href="/#projects" onClick={() => setMenuOpen(false)}>
+
+          <a
+            href="/#projects"
+            className={activeSection === "projects" ? styles.active : ""}
+            onClick={() => setMenuOpen(false)}
+          >
             Projects
           </a>
-          <a href="/#about" onClick={() => setMenuOpen(false)}>
+
+          <a
+            href="/#about"
+            className={activeSection === "about" ? styles.active : ""}
+            onClick={() => setMenuOpen(false)}
+          >
             About
           </a>
-          <a href="/#contact" onClick={() => setMenuOpen(false)}>
+
+          <a
+            href="/#contact"
+            className={activeSection === "contact" ? styles.active : ""}
+            onClick={() => setMenuOpen(false)}
+          >
             Contact
           </a>
         </nav>

@@ -152,6 +152,12 @@
               background-color: $black;
               color: $neon;
             }
+
+            /* active nav link — neon highlight */
+            &.active {
+              background-color: $black;
+              color: $neon;
+            }
           }
         }
 
@@ -258,6 +264,11 @@
         text-transform: uppercase;
 
         &:hover {
+          color: $neon;
+        }
+
+        /* active nav link — neon highlight */
+        &.active {
           color: $neon;
         }
       }
