@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useLoader } from "@/context/LoaderContext";
 import styles from "./Loader.module.scss";
@@ -9,40 +9,51 @@ import styles from "./Loader.module.scss";
    LOADING — in different languages
 ======================== */
 const loadingWords = [
-  "Loading", // English
-  "טוען", // Hebrew
-  "読み込み中", // Japanese
-  "جار التحميل", // Arabic
-  "Chargement", // French
-  "Cargando", // Spanish
-  "Caricamento", // Italian
-  "Laden", // German
-  "로딩", // Korean
-  "Carregando", // Portuguese
+  "Loading",
+  "טוען",
+  "読み込み中",
+  "جار التحميل",
+  "Chargement",
+  "Cargando",
+  "Caricamento",
+  "Laden",
+  "로딩",
+  "Carregando",
 ];
 
-const CYCLE_SPEED = 400; // ms between each word
-const MIN_DURATION = 3000; // minimum 3 seconds on screen
+const CYCLE_SPEED = 300;
+const MIN_DURATION = 3000;
 
 export default function Loader() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [visible, setVisible] = useState(true);
   const loaderRef = useRef<HTMLDivElement>(null);
   const { setIsLoading } = useLoader();
+  const [visible, setVisible] = useState(false);
 
+  /* ========================
+     SKIP IF ALREADY PLAYED — runs before paint
+  ======================== */
+  useLayoutEffect(() => {
+    const hasPlayed = sessionStorage.getItem("loaderPlayed");
+    if (hasPlayed) {
+      setIsLoading(false);
+    } else {
+      setVisible(true);
+    }
+  }, [setIsLoading]);
+
+  /* ========================
+     LOADER ANIMATION — only runs if not already played
+  ======================== */
   useEffect(() => {
-    /* ========================
-       WORD CYCLE — swap word every 300ms
-    ======================== */
+    if (!visible) return;
+
+    /* word cycle — swap word every 300ms */
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % loadingWords.length);
     }, CYCLE_SPEED);
 
-    /* ========================
-       EXIT LOGIC — wait for both:
-       1. minimum 3 seconds
-       2. page fully loaded
-    ======================== */
+    /* exit logic — wait for both min time + page load */
     const minTimer = new Promise((resolve) =>
       setTimeout(resolve, MIN_DURATION),
     );
@@ -59,7 +70,6 @@ export default function Loader() {
     Promise.all([minTimer, pageLoad]).then(() => {
       clearInterval(interval);
 
-      /* GSAP slide up exit */
       gsap.to(loaderRef.current, {
         y: "-100%",
         duration: 0.8,
@@ -67,12 +77,13 @@ export default function Loader() {
         onComplete: () => {
           setVisible(false);
           setIsLoading(false);
+          sessionStorage.setItem("loaderPlayed", "true");
         },
       });
     });
 
     return () => clearInterval(interval);
-  }, [setIsLoading]);
+  }, [visible, setIsLoading]);
 
   /* don't render after exit animation */
   if (!visible) return null;
@@ -80,13 +91,8 @@ export default function Loader() {
   return (
     <div className={styles.loader} ref={loaderRef}>
       <div className={styles.textLine}>
-        {/* static part — console.log(" */}
         <span>console.log(&quot;</span>
-
-        {/* loading word — swaps between languages */}
         <span className={styles.word}>{loadingWords[currentIndex]}</span>
-
-        {/* static part — ") */}
         <span>&quot;)</span>
       </div>
     </div>
