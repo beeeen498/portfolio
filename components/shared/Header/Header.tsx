@@ -71,7 +71,7 @@ export default function Header() {
           </button>
 
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/ben-kedem/"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.iconLink}
@@ -94,7 +94,7 @@ export default function Header() {
         {/* ---- left column (logo + nav) ---- */}
         <div className={styles.leftCol}>
           {/* logo */}
-          <a href="#home" className={styles.logo}>
+          <a href="/#home" className={styles.logo}>
             BEN KEDEM
           </a>
 
@@ -106,11 +106,11 @@ export default function Header() {
           {/* navigation */}
           <nav className={`${styles.nav} ${!menuOpen ? styles.navClosed : ""}`}>
             <div className={styles.navRow}>
-              <a href="#home" onClick={() => isMobile && setMenuOpen(false)}>
+              <a href="/#home" onClick={() => isMobile && setMenuOpen(false)}>
                 Home
               </a>
               <a
-                href="#projects"
+                href="/#projects"
                 onClick={() => isMobile && setMenuOpen(false)}
               >
                 Projects
@@ -121,10 +121,13 @@ export default function Header() {
             <div className={styles.dividerHorizontal} />
 
             <div className={styles.navRow}>
-              <a href="#about" onClick={() => isMobile && setMenuOpen(false)}>
+              <a href="/#about" onClick={() => isMobile && setMenuOpen(false)}>
                 About
               </a>
-              <a href="#contact" onClick={() => isMobile && setMenuOpen(false)}>
+              <a
+                href="/#contact"
+                onClick={() => isMobile && setMenuOpen(false)}
+              >
                 Contact
               </a>
             </div>
@@ -149,16 +152,16 @@ export default function Header() {
         className={`${styles.mobileOverlay} ${menuOpen && isMobile && hasMounted ? styles.overlayOpen : ""}`}
       >
         <nav className={styles.mobileNav}>
-          <a href="#home" onClick={() => setMenuOpen(false)}>
+          <a href="/#home" onClick={() => setMenuOpen(false)}>
             Home
           </a>
-          <a href="#projects" onClick={() => setMenuOpen(false)}>
+          <a href="/#projects" onClick={() => setMenuOpen(false)}>
             Projects
           </a>
-          <a href="#about" onClick={() => setMenuOpen(false)}>
+          <a href="/#about" onClick={() => setMenuOpen(false)}>
             About
           </a>
-          <a href="#contact" onClick={() => setMenuOpen(false)}>
+          <a href="/#contact" onClick={() => setMenuOpen(false)}>
             Contact
           </a>
         </nav>

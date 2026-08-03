@@ -139,7 +139,7 @@
       border-right: 2px solid $black;
       border-bottom: 2px solid $black;
       transform: rotate(45deg);
-      animation: bounce 2s infinite;
+      animation: fade 2s infinite;
     }
   }
 }
@@ -147,7 +147,7 @@
 /* ========================
   CURSOR BLINK ANIMATION
 ======================== */
-@keyframes bounce {
+@keyframes fade {
   0% {
     opacity: 1;
   }

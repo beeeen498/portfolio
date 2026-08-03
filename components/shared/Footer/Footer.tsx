@@ -2,9 +2,6 @@
 
 import styles from "./Footer.module.scss";
 
-/* ---- icons ---- */
-import { FaLinkedinIn } from "react-icons/fa";
-
 export default function Footer() {
   /* smooth scroll to top */
   const scrollToTop = () => {
@@ -17,10 +14,10 @@ export default function Footer() {
           NAV LINKS
       ======================== */}
       <nav className={styles.nav}>
-        <a href="#home">Home</a>
-        <a href="#projects">Projects</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        <a href="/#home">Home</a>
+        <a href="/#projects">Projects</a>
+        <a href="/#about">About</a>
+        <a href="/#contact">Contact</a>
       </nav>
 
       {/* ========================
@@ -34,7 +31,7 @@ export default function Footer() {
       <div className={styles.bottom}>
         {/* created by — links to LinkedIn */}
         <a
-          href="https://linkedin.com"
+          href="https://www.linkedin.com/in/ben-kedem/"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.credit}
