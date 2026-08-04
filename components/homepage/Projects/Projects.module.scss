@@ -161,6 +161,24 @@
     }
   }
 
+  /* info row — Hebrew (flipped) */
+  .infoRowHe {
+    flex-direction: row-reverse;
+
+    .projectDetails {
+      align-items: flex-end;
+      text-align: right;
+    }
+
+    .projectBadges {
+      justify-content: flex-start;
+    }
+
+    .projectName {
+      text-align: left;
+    }
+  }
+
   /* ========================
      mobile — 768px
   ======================== */

@@ -24,9 +24,9 @@ const translations = {
 
     /* ---- Projects ---- */
     projects: {
-      heading: "MY PROJECTS",
+      viewProject: "View Project",
     },
-
+    
     /* ---- Contact ---- */
     contact: {
       heading: "Contact",
@@ -83,7 +83,7 @@ const translations = {
 
     /* ---- Projects ---- */
     projects: {
-      heading: "הפרויקטים שלי",
+      viewProject: "מעבר לפרויקט",
     },
 
     /* ---- Contact ---- */

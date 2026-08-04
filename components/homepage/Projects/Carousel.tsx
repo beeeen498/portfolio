@@ -2,8 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useLoader } from "@/context/LoaderContext";
-import gsap from "gsap";
+import { useLanguage } from "@/context/LanguageContext";
 import { type Project } from "@/lib/projects";
+import gsap from "gsap";
 import styles from "./Carousel.module.scss";
 
 // ── Props ────────────────────────────────────────────────
@@ -41,6 +42,7 @@ export default function Carousel({
   const rotationRef = useRef(0);
   const [ready, setReady] = useState(false);
   const { isLoading } = useLoader();
+  const { lang } = useLanguage();
 
   // ── Get center of track ───────────────────────────────
   function getCenter() {
@@ -298,7 +300,7 @@ export default function Carousel({
           >
             <img
               src={project.image}
-              alt={project.name.en}
+              alt={project.name[lang]}
               className={styles.cardImage}
             />
           </div>

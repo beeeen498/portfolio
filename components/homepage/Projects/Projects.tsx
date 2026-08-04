@@ -1,9 +1,11 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { getProjectsSorted, type Project } from "@/lib/projects";
+import { useLanguage } from "@/context/LanguageContext";
+import translations from "@/translations/translations";
+import gsap from "gsap";
 import Carousel from "./Carousel";
 import styles from "./Projects.module.scss";
 
@@ -20,6 +22,8 @@ export default function Projects() {
   const [activeId, setActiveId] = useState(projects[0].id);
   const [inView, setInView] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const { lang } = useLanguage();
+  const t = translations[lang].projects;
 
   /* active project data */
   const activeProject = projects.find((p) => p.id === activeId) || projects[0];
@@ -53,10 +57,18 @@ export default function Projects() {
       {/* ========================
           INFO ROW — name left, details right
       ======================== */}
-      <div className={styles.infoRow}>
+      <div
+        className={`${styles.infoRow} ${lang === "he" ? styles.infoRowHe : ""}`}
+      >
+        {" "}
         {/* description + badges — left */}
         <div className={styles.projectDetails}>
-          <p className={styles.projectSummary}>{activeProject.summary.en}</p>
+          <p
+            className={styles.projectSummary}
+            dir={lang === "he" ? "rtl" : "ltr"}
+          >
+            {activeProject.summary[lang]}
+          </p>{" "}
           {activeProject.stack.length > 0 && (
             <div className={styles.projectBadges}>
               {activeProject.stack.map((tech) => (
@@ -67,9 +79,8 @@ export default function Projects() {
             </div>
           )}
         </div>
-
         {/* project name — right */}
-        <h3 className={styles.projectName}>{activeProject.name.en}</h3>
+        <h3 className={styles.projectName}>{activeProject.name[lang]}</h3>
       </div>
 
       {/* ========================
@@ -92,7 +103,7 @@ export default function Projects() {
         rel="noopener noreferrer"
         className={styles.detailButton}
       >
-        View Project
+        {t.viewProject}
       </a>
     </section>
   );
