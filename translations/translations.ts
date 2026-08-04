@@ -45,7 +45,8 @@ const translations = {
 
     /* ---- Footer ---- */
     footer: {
-      createdBy: "Created by Ben Kedem",
+      createdBy: "Created by",
+      name: "Ben Kedem",
       backToTop: "Back to top",
     },
 
@@ -103,7 +104,8 @@ const translations = {
 
     /* ---- Footer ---- */
     footer: {
-      createdBy: "נוצר על ידי בן קדם",
+      createdBy: "נוצר על ידי",
+      name: "בן קדם",
       backToTop: "חזרה למעלה",
     },
 

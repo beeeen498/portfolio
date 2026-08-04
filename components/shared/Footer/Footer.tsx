@@ -1,8 +1,13 @@
 "use client";
 
+import { useLanguage } from "@/context/LanguageContext";
+import translations from "@/translations/translations";
 import styles from "./Footer.module.scss";
 
 export default function Footer() {
+  const { lang } = useLanguage();
+  const t = translations[lang].footer;
+
   /* smooth scroll to top */
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -10,14 +15,15 @@ export default function Footer() {
 
   return (
     <footer className={styles.footer}>
+
       {/* ========================
           NAV LINKS
       ======================== */}
       <nav className={styles.nav}>
-        <a href="/#home">Home</a>
-        <a href="/#projects">Projects</a>
-        <a href="/#about">About</a>
-        <a href="/#contact">Contact</a>
+        <a href="#home">{translations[lang].header.home}</a>
+        <a href="#projects">{translations[lang].header.projects}</a>
+        <a href="#about">{translations[lang].header.about}</a>
+        <a href="#contact">{translations[lang].header.contact}</a>
       </nav>
 
       {/* ========================
@@ -36,7 +42,7 @@ export default function Footer() {
           rel="noopener noreferrer"
           className={styles.credit}
         >
-          Created by <span className={styles.footerName}>Ben Kedem</span>
+          {t.createdBy} <span className={styles.footerName}>{t.name}</span>
         </a>
 
         {/* copyright */}
@@ -49,9 +55,9 @@ export default function Footer() {
       <button
         className={styles.backToTop}
         onClick={scrollToTop}
-        aria-label="Back to top"
+        aria-label={t.backToTop}
       >
-        Back to top
+        {t.backToTop}
       </button>
     </footer>
   );
