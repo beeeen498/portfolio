@@ -1,5 +1,13 @@
 import type { Metadata } from "next";
-import { Teko, Russo_One, Abel, Syncopate } from "next/font/google";
+import {
+  Teko,
+  Russo_One,
+  Abel,
+  Syncopate,
+  Karantina,
+  Heebo,
+} from "next/font/google";
+import { LanguageProvider } from "@/context/LanguageContext";
 import { LoaderProvider } from "@/context/LoaderContext";
 import Loader from "@/components/shared/Loader/Loader";
 import Header from "@/components/shared/Header/Header";
@@ -31,6 +39,18 @@ const syncopate = Syncopate({
   weight: ["400", "700"],
 });
 
+const karantina = Karantina({
+  variable: "--font-karantina",
+  subsets: ["hebrew"],
+  weight: ["400", "700"],
+});
+
+const heebo = Heebo({
+  variable: "--font-heebo",
+  subsets: ["hebrew"],
+  weight: ["300", "400", "700"],
+});
+
 // metadata
 export const metadata: Metadata = {
   title: "Ben Kedem | Front End Developer",
@@ -60,15 +80,17 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${teko.variable} ${russoOne.variable} ${abel.variable} ${syncopate.variable}`}
+      className={`${teko.variable} ${russoOne.variable} ${abel.variable} ${syncopate.variable} ${karantina.variable} ${heebo.variable}`}
     >
       <body>
-        <LoaderProvider>
-          <Loader />
-          <Header />
-          {children}
-          <Footer />
-        </LoaderProvider>
+        <LanguageProvider>
+          <LoaderProvider>
+            <Loader />
+            <Header />
+            {children}
+            <Footer />
+          </LoaderProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

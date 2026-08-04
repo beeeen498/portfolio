@@ -2,14 +2,15 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useLoader } from "@/context/LoaderContext";
+import { useLanguage } from "@/context/LanguageContext";
+import translations from "@/translations/translations";
 import gsap from "gsap";
 import styles from "./Hero.module.scss";
 
 /* ========================
-   GREETING TEXT — used for typing effect
+   TYPING SPEED — ms per letter
 ======================== */
-const GREETING = "Hello, I'm";
-const TYPING_SPEED = 120; // ms per letter
+const TYPING_SPEED = 120;
 
 /* ========================
    CODE SNIPPETS — your own source code
@@ -57,6 +58,7 @@ h1, h2, h3 {
 export default function Hero() {
   const [displayedGreeting, setDisplayedGreeting] = useState("");
   const [showCursor, setShowCursor] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
   const codeLayersRef = useRef<HTMLDivElement>(null);
   const layersRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -65,14 +67,20 @@ export default function Hero() {
   const roleRef = useRef<HTMLSpanElement>(null);
   const scrollRef = useRef<HTMLAnchorElement>(null);
   const { isLoading } = useLoader();
+  const { lang } = useLanguage();
+  const t = translations[lang].hero;
 
   /* ========================
      GSAP — slide-in on page load
      + typing effect on the greeting
+     (only runs once on first load)
   ======================== */
   useEffect(() => {
     /* don't start until loader is done */
     if (isLoading) return;
+
+    /* skip if already animated */
+    if (hasAnimated) return;
 
     /* fade in code layers over 1.5s */
     gsap.to(codeLayersRef.current, {
@@ -82,6 +90,7 @@ export default function Hero() {
     });
 
     let interval: NodeJS.Timeout;
+    const greeting = t.greeting;
 
     /* start typing after 0.4s */
     const delay = setTimeout(() => {
@@ -89,12 +98,13 @@ export default function Hero() {
       let i = 0;
       interval = setInterval(() => {
         i++;
-        setDisplayedGreeting(GREETING.slice(0, i));
+        setDisplayedGreeting(greeting.slice(0, i));
 
         /* done typing — hide cursor, slide in name + role + scroll */
-        if (i >= GREETING.length) {
+        if (i >= greeting.length) {
           clearInterval(interval);
           setShowCursor(false);
+          setHasAnimated(true);
 
           const tl = gsap.timeline({
             defaults: { ease: "power3.out" },
@@ -132,6 +142,15 @@ export default function Hero() {
       clearInterval(interval);
     };
   }, [isLoading]);
+
+  /* ========================
+     LANGUAGE SWITCH — update text instantly
+     (only after initial animation has played)
+  ======================== */
+  useEffect(() => {
+    if (!hasAnimated) return;
+    setDisplayedGreeting(t.greeting);
+  }, [lang, hasAnimated, t.greeting]);
 
   /* ========================
      PARALLAX — scroll + mouse
@@ -202,21 +221,26 @@ export default function Hero() {
       {/* ========================
           HERO TEXT
       ======================== */}
-      <div className={styles.textBlock}>
+      <div
+        className={`${styles.textBlock} ${lang === "he" ? styles.textBlockHe : ""}`}
+      >
+        {" "}
         {/* line 1 — greeting (typing effect) */}
-        <span className={styles.greeting} ref={greetingRef}>
+        <span
+          className={styles.greeting}
+          ref={greetingRef}
+          dir={lang === "he" ? "rtl" : "ltr"}
+        >
           {displayedGreeting}
           {showCursor && <span className={styles.cursor}>|</span>}
         </span>
-
         {/* line 2 — name */}
         <h1 className={styles.name} ref={nameRef}>
-          BEN KEDEM.
+          {t.name}
         </h1>
-
         {/* line 3 — role */}
         <span className={styles.role} ref={roleRef}>
-          A front end developer
+          {t.role}
         </span>
       </div>
 

@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { useLoader } from "@/context/LoaderContext";
+import { useLanguage } from "@/context/LanguageContext";
+import translations from "@/translations/translations";
 import styles from "./Header.module.scss";
 
 /* ---- icons ---- */
@@ -13,6 +15,8 @@ export default function Header() {
   const [hasMounted, setHasMounted] = useState(false);
   const { isLoading } = useLoader();
   const [activeSection, setActiveSection] = useState("");
+  const { lang, setLang } = useLanguage();
+  const t = translations[lang].header;
 
   /* ========================
      RESIZE — detect mobile / desktop
@@ -69,10 +73,14 @@ export default function Header() {
       <div className={styles.topRow}>
         {/* left group — lang, linkedin, contact */}
         <div className={styles.topLeft}>
-          <button className={styles.langToggle}>
-            <span className={styles.langActive}>EN</span>
+          {/* language toggle */}
+          <button
+            className={styles.langToggle}
+            onClick={() => setLang(lang === "en" ? "he" : "en")}
+          >
+            <span className={lang === "en" ? styles.langActive : ""}>EN</span>
             <span>/</span>
-            <span>HE</span>
+            <span className={lang === "he" ? styles.langActive : ""}>HE</span>
           </button>
 
           <a
@@ -109,42 +117,43 @@ export default function Header() {
           />
 
           {/* navigation */}
-          <nav className={`${styles.nav} ${!menuOpen ? styles.navClosed : ""}`}>
+          <nav
+            className={`${styles.nav} ${!menuOpen ? styles.navClosed : ""} ${lang === "he" ? styles.navHe : ""}`}
+            dir={lang === "he" ? "rtl" : "ltr"}
+          >
+            {" "}
             <div className={styles.navRow}>
               <a
                 href="/#home"
                 className={activeSection === "home" ? styles.active : ""}
                 onClick={() => isMobile && setMenuOpen(false)}
               >
-                Home
+                {t.home}
               </a>
               <a
                 href="/#projects"
                 className={activeSection === "projects" ? styles.active : ""}
                 onClick={() => isMobile && setMenuOpen(false)}
               >
-                Projects
+                {t.projects}
               </a>
             </div>
-
             {/* horizontal divider */}
             <div className={styles.dividerHorizontal} />
-
             <div className={styles.navRow}>
               <a
                 href="/#about"
                 className={activeSection === "about" ? styles.active : ""}
                 onClick={() => isMobile && setMenuOpen(false)}
               >
-                About
+                {t.about}
               </a>
-              
               <a
                 href="/#contact"
                 className={activeSection === "contact" ? styles.active : ""}
                 onClick={() => isMobile && setMenuOpen(false)}
               >
-                Contact
+                {t.contact}
               </a>
             </div>
           </nav>
@@ -169,37 +178,34 @@ export default function Header() {
       <div
         className={`${styles.mobileOverlay} ${menuOpen && isMobile && hasMounted ? styles.overlayOpen : ""}`}
       >
-        <nav className={styles.mobileNav}>
+        <nav className={styles.mobileNav} dir={lang === "he" ? "rtl" : "ltr"}>
           <a
             href="/#home"
             className={activeSection === "home" ? styles.active : ""}
             onClick={() => setMenuOpen(false)}
           >
-            Home
+            {t.home}
           </a>
-
           <a
             href="/#projects"
             className={activeSection === "projects" ? styles.active : ""}
             onClick={() => setMenuOpen(false)}
           >
-            Projects
+            {t.projects}
           </a>
-
           <a
             href="/#about"
             className={activeSection === "about" ? styles.active : ""}
             onClick={() => setMenuOpen(false)}
           >
-            About
+            {t.about}
           </a>
-
           <a
             href="/#contact"
             className={activeSection === "contact" ? styles.active : ""}
             onClick={() => setMenuOpen(false)}
           >
-            Contact
+            {t.contact}
           </a>
         </nav>
       </div>

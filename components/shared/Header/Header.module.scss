@@ -161,8 +161,20 @@
           }
         }
 
+        /* ---- English alignment ---- */
         .navRow:first-child a:first-child {
           transform: translateX(4px);
+        }
+
+        /* ---- Hebrew alignment ---- */
+        &.navHe {
+          .navRow:first-child a:first-child {
+            transform: translateX(-2px);
+          }
+
+          .navRow:first-child a:nth-child(2) {
+            transform: translateX(-5px);
+          }
         }
 
         /* horizontal divider */

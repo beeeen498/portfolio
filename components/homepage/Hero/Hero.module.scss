@@ -97,10 +97,6 @@
       font-size: clamp(3rem, 10vw, 8rem);
       text-transform: uppercase;
       line-height: 1;
-      background: linear-gradient(to top, $grey 13%, $black 40%);
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
       opacity: 0;
       transform: translateY(50px);
     }
@@ -113,6 +109,25 @@
       letter-spacing: 0.3em;
       opacity: 0;
       transform: translateY(30px);
+    }
+
+    /* ========================
+    HEBREW FONTS — hero only
+    ======================== */
+    &.textBlockHe {
+      .greeting {
+        font-family: $font-heebo;
+      }
+
+      .name {
+        font-family: $font-karantina;
+        font-size: clamp(4.5rem, 14vw, 14rem);
+      }
+
+      .role {
+        font-family: $font-heebo;
+        letter-spacing: 0.1em;
+      }
     }
   }
 

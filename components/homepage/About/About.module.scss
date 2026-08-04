@@ -69,6 +69,14 @@
       font-size: clamp(3rem, 8vw, 5rem);
       color: $white;
       letter-spacing: 0.1em;
+      line-height: 1.5;
+      margin-bottom: -30px;
+    }
+
+    .headingHe {
+      font-size: clamp(3rem, 8vw, 8rem);
+      line-height: 0.8;
+      margin-bottom: 0px;
     }
 
     /* ========================

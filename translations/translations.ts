@@ -20,11 +20,6 @@ const translations = {
     about: {
       comment: "// who am i",
       heading: "ABOUT",
-      paragraphs: [
-        "First paragraph goes here.",
-        "Second paragraph goes here.",
-        "Third paragraph goes here.",
-      ],
     },
 
     /* ---- Projects ---- */
@@ -75,14 +70,13 @@ const translations = {
     hero: {
       greeting: "שלום, אני",
       name: "בן קדם",
-      role: "מפתח צד לקוח",
+      role: "FRONT END מפתח",
     },
 
     /* ---- About ---- */
     about: {
-      comment: "// מי אני",
+      comment: "// who am i",
       heading: "אודות",
-      paragraphs: ["פסקה ראשונה כאן.", "פסקה שנייה כאן.", "פסקה שלישית כאן."],
     },
 
     /* ---- Projects ---- */
