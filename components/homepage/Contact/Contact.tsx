@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useLanguage } from "@/context/LanguageContext";
+import translations from "@/translations/translations";
 import emailjs from "@emailjs/browser";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -36,6 +38,8 @@ export default function Contact() {
   const submitRef = useRef<HTMLButtonElement>(null);
   const plusTopRef = useRef<HTMLSpanElement>(null);
   const plusBottomRef = useRef<HTMLSpanElement>(null);
+  const { lang } = useLanguage();
+  const t = translations[lang].contact;
 
   /* ========================
      GSAP — fade/slide inputs in on scroll
@@ -107,23 +111,23 @@ export default function Contact() {
 
     /* full name — required */
     if (!formData.fullName.trim()) {
-      newErrors.fullName = "Full name is required";
+      newErrors.fullName = t.errors.fullName;
       isValid = false;
     }
 
     /* email — required + valid format */
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.email.trim()) {
-      newErrors.email = "Please enter a valid email";
+      newErrors.email = t.errors.email;
       isValid = false;
     } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = "Please enter a valid email";
+      newErrors.email = t.errors.email;
       isValid = false;
     }
 
     /* message — required */
     if (!formData.message.trim()) {
-      newErrors.message = "Message is required";
+      newErrors.message = t.errors.message;
       isValid = false;
     }
 
@@ -197,8 +201,12 @@ export default function Contact() {
 
         <div className={styles.content}>
           <span className={styles.comment}>// get in touch</span>
-          <h2 className={styles.heading}>CONTACT</h2>
-          <p className={styles.success}>I will contact you shortly :&#41;</p>
+          <h2
+            className={`${styles.heading} ${lang === "he" ? styles.headingHe : ""}`}
+          >
+            {t.heading}
+          </h2>
+          <p className={styles.success}>{t.success}</p>
         </div>
 
         {/* +++ decoration — bottom right */}
@@ -208,6 +216,13 @@ export default function Contact() {
       </section>
     );
   }
+
+  /* ========================
+   CLEAR ERRORS ON LANGUAGE CHANGE
+  ======================== */
+  useEffect(() => {
+    setErrors({ fullName: "", email: "", message: "" });
+  }, [lang]);
 
   /* ========================
      RENDER — FORM (default + sending)
@@ -226,13 +241,22 @@ export default function Contact() {
         <span className={styles.comment}>// get in touch</span>
 
         {/* heading */}
-        <h2 className={styles.heading}>CONTACT</h2>
+        <h2
+          className={`${styles.heading} ${lang === "he" ? styles.headingHe : ""}`}
+        >
+          {t.heading}
+        </h2>
 
         {/* form */}
-        <form className={styles.form} onSubmit={handleSubmit} noValidate>
+        <form
+          className={styles.form}
+          onSubmit={handleSubmit}
+          noValidate
+          dir={lang === "he" ? "rtl" : "ltr"}
+        >
           {/* ---- full name ---- */}
           <div
-            className={`${styles.inputGroup} ${errors.fullName ? styles.hasError : ""}`}
+            className={`${styles.inputGroup} ${errors.fullName ? styles.hasError : ""} ${lang === "he" ? styles.rtl : ""}`}
             ref={(el) => {
               inputGroupsRef.current[0] = el;
             }}
@@ -244,7 +268,7 @@ export default function Contact() {
               onChange={handleChange}
               className={`${styles.input} ${formData.fullName ? styles.filled : ""}`}
             />
-            <label className={styles.label}>Full Name</label>
+            <label className={styles.label}>{t.fullName}</label>
             {errors.fullName && (
               <span className={styles.error}>{errors.fullName}</span>
             )}
@@ -252,7 +276,7 @@ export default function Contact() {
 
           {/* ---- email ---- */}
           <div
-            className={`${styles.inputGroup} ${errors.email ? styles.hasError : ""}`}
+            className={`${styles.inputGroup} ${errors.fullName ? styles.hasError : ""} ${lang === "he" ? styles.rtl : ""}`}
             ref={(el) => {
               inputGroupsRef.current[1] = el;
             }}
@@ -264,7 +288,7 @@ export default function Contact() {
               onChange={handleChange}
               className={`${styles.input} ${formData.email ? styles.filled : ""}`}
             />
-            <label className={styles.label}>Email</label>
+            <label className={styles.label}>{t.email}</label>
             {errors.email && (
               <span className={styles.error}>{errors.email}</span>
             )}
@@ -272,7 +296,7 @@ export default function Contact() {
 
           {/* ---- message ---- */}
           <div
-            className={`${styles.inputGroup} ${errors.message ? styles.hasError : ""}`}
+            className={`${styles.inputGroup} ${errors.fullName ? styles.hasError : ""} ${lang === "he" ? styles.rtl : ""}`}
             ref={(el) => {
               inputGroupsRef.current[2] = el;
             }}
@@ -283,7 +307,7 @@ export default function Contact() {
               onChange={handleChange}
               className={`${styles.textarea} ${formData.message ? styles.filled : ""}`}
             />
-            <label className={styles.label}>Message</label>
+            <label className={styles.label}>{t.message}</label>
             {errors.message && (
               <span className={styles.error}>{errors.message}</span>
             )}
@@ -296,7 +320,7 @@ export default function Contact() {
             disabled={status === "sending"}
             ref={submitRef}
           >
-            {status === "sending" ? "Sending..." : "Send"}
+            {status === "sending" ? t.sending : t.send}
           </button>
         </form>
       </div>

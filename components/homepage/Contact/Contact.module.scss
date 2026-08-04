@@ -36,6 +36,13 @@
       letter-spacing: 0.1em;
       text-align: center;
     }
+
+    /* Hebrew heading — adjust size */
+    .headingHe {
+      font-size: clamp(3rem, 8vw, 8rem);
+      line-height: 0.8;
+      margin-bottom: 0px;
+    }
   }
 
   /* ========================
@@ -124,6 +131,14 @@
       .input,
       .textarea {
         border-bottom-color: $black;
+      }
+    }
+
+    /* RTL — flip label to right side */
+    &.rtl {
+      .label {
+        left: auto;
+        right: 0;
       }
     }
   }

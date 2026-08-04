@@ -29,6 +29,7 @@ const translations = {
 
     /* ---- Contact ---- */
     contact: {
+      heading: "Contact",
       fullName: "Full Name",
       email: "Email",
       message: "Message",
@@ -62,7 +63,7 @@ const translations = {
       home: "בית",
       projects: "פרויקטים",
       about: "אודות",
-      contact: "צור קשר",
+      contact: "יצירת קשר",
       email: "benkedem@email.com",
     },
 
@@ -86,16 +87,17 @@ const translations = {
 
     /* ---- Contact ---- */
     contact: {
+      heading: "צרו קשר",
       fullName: "שם מלא",
       email: "אימייל",
       message: "הודעה",
-      send: "שלח",
+      send: "שליחה",
       sending: "שולח...",
       success: "ההודעה נשלחה בהצלחה!",
       errors: {
-        fullName: "שם מלא הוא שדה חובה",
-        email: "נא להזין אימייל תקין",
-        message: "הודעה היא שדה חובה",
+        fullName: "אנא רשמו שם מלא",
+        email: "אנא הזינו אימייל תקין",
+        message: "אנא הוסיפו הודעה",
       },
     },
 
