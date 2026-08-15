@@ -37,6 +37,7 @@ export default function Loader() {
     const hasPlayed = sessionStorage.getItem("loaderPlayed");
     if (hasPlayed) {
       setIsLoading(false);
+      document.getElementById("pre-loader")?.remove();
     } else {
       setVisible(true);
     }
@@ -69,6 +70,9 @@ export default function Loader() {
     /* when both conditions are met — slide up and remove */
     Promise.all([minTimer, pageLoad]).then(() => {
       clearInterval(interval);
+
+      /* remove curtain before slide — Loader is still on top */
+      document.getElementById("pre-loader")?.remove();
 
       gsap.to(loaderRef.current, {
         y: "-100%",

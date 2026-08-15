@@ -83,6 +83,19 @@ export default function RootLayout({
       className={`${teko.variable} ${russoOne.variable} ${abel.variable} ${syncopate.variable} ${karantina.variable} ${heebo.variable}`}
     >
       <body>
+        {/* prevents flash before Loader mounts */}
+        <div
+          id="pre-loader"
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100vh",
+            backgroundColor: "#656565",
+            zIndex: 998,
+          }}
+        />
         <LanguageProvider>
           <LoaderProvider>
             <Loader />
