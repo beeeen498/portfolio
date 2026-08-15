@@ -11,7 +11,7 @@ const translations = {
 
     /* ---- Hero ---- */
     hero: {
-      greeting: "hello, i'm",
+      greeting: "Hello, I'm",
       name: "BEN KEDEM",
       role: "front end developer",
     },

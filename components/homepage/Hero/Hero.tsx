@@ -53,6 +53,18 @@ h1, h2, h3 {
   font-family: $font-teko;
   text-transform: uppercase;
 }`,
+  `function positionCards(rotation: number) {
+  const { cx, cy } = getCenter();
+  const { radius, cardW, cardH } = getResponsive();
+  cardsRef.current.forEach((card, i) => {
+    const angleDeg = i * ANGLE_STEP + rotation;
+    const angleRad = (angleDeg - 90) * (Math.PI / 180);
+    const x = cx + Math.cos(angleRad) * radius;
+    const y = cy + Math.sin(angleRad) * radius;
+    const isTop = normalizedAngle < ANGLE_STEP / 2;
+    gsap.to(card, { x, y, scale: isTop ? 1.07 : 1 });
+  });
+}`,
 ];
 
 export default function Hero() {
@@ -172,8 +184,8 @@ export default function Hero() {
       layersRef.current.forEach((layer, i) => {
         if (!layer) return;
         const depth = depths[i];
-        const moveX = x * depth * 300;
-        const moveY = y * depth * 300;
+        const moveX = x * depth * 500;
+        const moveY = y * depth * 500;
         layer.style.transform = `translate(${moveX}px, ${moveY}px)`;
       });
     };

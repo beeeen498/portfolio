@@ -131,22 +131,22 @@ export default function Header() {
                 {t.home}
               </a>
               <a
-                href="/#projects"
-                className={activeSection === "projects" ? styles.active : ""}
+                href="/#about"
+                className={activeSection === "about" ? styles.active : ""}
                 onClick={() => isMobile && setMenuOpen(false)}
               >
-                {t.projects}
+                {t.about}
               </a>
             </div>
             {/* horizontal divider */}
             <div className={styles.dividerHorizontal} />
             <div className={styles.navRow}>
               <a
-                href="/#about"
-                className={activeSection === "about" ? styles.active : ""}
+                href="/#projects"
+                className={activeSection === "projects" ? styles.active : ""}
                 onClick={() => isMobile && setMenuOpen(false)}
               >
-                {t.about}
+                {t.projects}
               </a>
               <a
                 href="/#contact"

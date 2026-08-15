@@ -163,17 +163,21 @@
 
         /* ---- English alignment ---- */
         .navRow:first-child a:first-child {
-          transform: translateX(4px);
+          transform: translateX(-7px);
+        }
+
+        .navRow:first-child a:nth-child(2) {
+          transform: translateX(12px);
         }
 
         /* ---- Hebrew alignment ---- */
         &.navHe {
           .navRow:first-child a:first-child {
-            transform: translateX(-2px);
+            transform: translateX(10px);
           }
 
           .navRow:first-child a:nth-child(2) {
-            transform: translateX(-5px);
+            transform: translateX(-12px);
           }
         }
 

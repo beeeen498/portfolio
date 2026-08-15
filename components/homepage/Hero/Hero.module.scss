@@ -53,18 +53,25 @@
       opacity: 0.4;
     }
 
-    /* layer 1 — middle right */
+    /* layer 1 — top right */
     .layer1 {
-      top: 30%;
-      right: -10%;
-      opacity: 0.7;
+      top: 10%;
+      right: 5%;
+      opacity: 0.3;
     }
 
     /* layer 2 — bottom left */
     .layer2 {
-      bottom: 5%;
-      left: 10%;
+      bottom: -5%;
+      left: 5%;
       opacity: 0.3;
+    }
+
+    /* layer 3 — bottom right */
+    .layer3 {
+      bottom: 5%;
+      right: 10%;
+      opacity: 0.5;
     }
   }
 
@@ -104,11 +111,12 @@
     /* line 3 — "front end developer" (hidden until GSAP animates in) */
     .role {
       font-family: $font-syncopate;
-      font-size: clamp(0.7rem, 1.8vw, 1.2rem);
+      font-size: clamp(0.8rem, 1.8vw, 1.2rem);
       color: $black;
       letter-spacing: 0.3em;
       opacity: 0;
       transform: translateY(30px);
+      font-weight: bolder;
     }
 
     /* ========================
@@ -128,6 +136,16 @@
         font-family: $font-heebo;
         letter-spacing: 0.1em;
       }
+    }
+
+    /* soft backdrop for readability over code layers */
+    &::before {
+      content: "";
+      position: absolute;
+      inset: -40px -60px;
+      background: radial-gradient(ellipse, rgba($grey, 1) 0%, transparent 70%);
+      z-index: -1;
+      pointer-events: none;
     }
   }
 
@@ -173,5 +191,36 @@
 
   100% {
     opacity: 1;
+  }
+}
+
+/* hide layers 0 and 2 on smaller screens */
+@media (max-width: 400px) {
+  .hero {
+    .codeLayers {
+      /* layer 0 — top left */
+      .layer0 {
+        opacity: 0;
+      }
+
+      /* layer 1 — top right */
+      .layer1 {
+        top: 5%;
+        left: 0%;
+        opacity: 0.3;
+      }
+
+      /* layer 2 — bottom left */
+      .layer2 {
+        opacity: 0;
+      }
+
+      /* layer 3 — bottom right */
+      .layer3 {
+        bottom: 5%;
+        right: -40%;
+        opacity: 0.5;
+      }
+    }
   }
 }
