@@ -64,6 +64,23 @@
     &:hover {
       box-shadow: 0 12px 40px rgba(40, 40, 40, 0.2);
     }
+
+    /* "In Progress" label */
+    .wipLabel {
+      position: absolute;
+      top: 0px;
+      left: -23px;
+      background-color: $black;
+      color: $white;
+      font-family: $font-abel;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 3px 8px;
+      border-radius: 4px;
+      pointer-events: none;
+      transform: rotate(-45deg);
+    }
   }
 
   /* ========================

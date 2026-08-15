@@ -9,6 +9,7 @@ export type Project = {
   stack: string[];
   image: string;
   url: string;
+  wip?: boolean; // work in progress
 };
 
 /* ========================
@@ -50,29 +51,27 @@ export const projects: Project[] = [
   {
     id: 3,
     order: 3,
-    name: { en: "Project Three", he: "פרויקט שלוש" },
-    summary: { en: "Short description goes here.", he: "תיאור קצר כאן." },
-    stack: [],
-    image: "/projects/project-3.png",
-    url: "https://project-three.vercel.app",
+    name: { en: "Brutal Studio", he: "Brutal Studio" },
+    summary: {
+      en: "A neo-brutalist design studio website featuring GSAP scroll animations, 3D flip cards, an interactive timeline slider with swipe and keyboard navigation, and a seamless logo carousel.",
+      he: "אתר סטודיו לעיצוב בסגנון ניאו-ברוטליסטי עם אנימציות גלילה, כרטיסי 3D מתהפכים, סליידר טיימליין אינטראקטיבי וקרוסלת לוגואים.",
+    },
+    stack: ["React", "SCSS", "GSAP"],
+    image: "/projects/brutal-studio.png",
+    url: "https://brutal-studio-two.vercel.app",
   },
   {
     id: 4,
     order: 4,
-    name: { en: "Project Four", he: "פרויקט ארבע" },
-    summary: { en: "Short description goes here.", he: "תיאור קצר כאן." },
-    stack: [],
-    image: "/projects/project-4.png",
-    url: "https://project-four.vercel.app",
-  },
-  {
-    id: 5,
-    order: 5,
-    name: { en: "Project Five", he: "פרויקט חמש" },
-    summary: { en: "Short description goes here.", he: "תיאור קצר כאן." },
-    stack: [],
-    image: "/projects/project-5.png",
-    url: "https://project-five.vercel.app",
+    name: { en: "The Container", he: "The Container" },
+    summary: {
+      en: "A headless e-commerce storefront for an Israeli art and luxury fashion boutique. Features bilingual support (Hebrew/English) with full RTL, Shopify Storefront API integration, customer accounts, and a custom cart system.",
+      he: "חנות אונליין headless לבוטיק ישראלי לאמנות ואופנה יוקרתית. כולל תמיכה דו-לשונית (עברית/אנגלית) עם RTL מלא, אינטגרציה עם Shopify Storefront API, חשבונות לקוחות ומערכת עגלת קניות מותאמת.",
+    },
+    stack: ["Next.js", "Shopify Storefront API", "SCSS", "Vercel"],
+    image: "/projects/the-container.png",
+    url: "https://thecontaineronline.com",
+    wip: true,
   },
 ];
 

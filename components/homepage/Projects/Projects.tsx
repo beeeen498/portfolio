@@ -59,6 +59,7 @@ export default function Projects() {
       ======================== */}
       <div
         className={`${styles.infoRow} ${lang === "he" ? styles.infoRowHe : ""}`}
+        dir={lang === "he" ? "rtl" : "ltr"}
       >
         {" "}
         {/* description + badges — left */}
@@ -97,14 +98,22 @@ export default function Projects() {
       </div>
 
       {/* view project button */}
-      <a
-        href={activeProject.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.detailButton}
-      >
-        {t.viewProject}
-      </a>
+      {activeProject.wip ? (
+        <span
+          className={`${styles.detailButton} ${styles.detailButtonDisabled}`}
+        >
+          {t.viewProject}
+        </span>
+      ) : (
+        <a
+          href={activeProject.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.detailButton}
+        >
+          {t.viewProject}
+        </a>
+      )}
     </section>
   );
 }

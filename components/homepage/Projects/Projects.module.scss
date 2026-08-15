@@ -51,6 +51,23 @@
     margin-top: 16px;
   }
 
+  .infoRowHe {
+    text-align: right;
+
+    .projectDetails {
+      align-items: flex-start;
+      text-align: right;
+    }
+
+    .projectBadges {
+      justify-content: flex-start;
+    }
+
+    .projectName {
+      text-align: left;
+    }
+  }
+
   /* details — left side */
   .projectDetails {
     display: flex;
@@ -133,6 +150,13 @@
     }
   }
 
+  /* disabled state — for WIP projects */
+  .detailButtonDisabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
   /* ========================
      tablet — 815px
   ======================== */
@@ -159,23 +183,23 @@
     .carouselWrapper {
       height: 400px;
     }
-  }
 
-  /* info row — Hebrew (flipped) */
-  .infoRowHe {
-    flex-direction: row-reverse;
+    /* reset Hebrew flip on tablet */
+    .infoRowHe {
+      flex-direction: column-reverse;
 
-    .projectDetails {
-      align-items: flex-end;
-      text-align: right;
-    }
+      .projectDetails {
+        align-items: center;
+        text-align: center;
+      }
 
-    .projectBadges {
-      justify-content: flex-start;
-    }
+      .projectBadges {
+        justify-content: center;
+      }
 
-    .projectName {
-      text-align: left;
+      .projectName {
+        text-align: center;
+      }
     }
   }
 

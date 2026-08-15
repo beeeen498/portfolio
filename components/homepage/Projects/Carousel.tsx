@@ -286,7 +286,6 @@ export default function Carousel({
               if (el) cardsRef.current[i] = el;
             }}
             className={styles.card}
-            // style={{ backgroundColor: project.color }}
             onClick={() => {
               const activeIndex = getActiveIndex(rotationRef.current);
               if (i === activeIndex) {
@@ -303,6 +302,11 @@ export default function Carousel({
               alt={project.name[lang]}
               className={styles.cardImage}
             />
+
+            {/* work in progress lable */}
+            {project.wip && (
+              <span className={styles.wipLabel}>In Progress</span>
+            )}
           </div>
         ))}
       </div>
