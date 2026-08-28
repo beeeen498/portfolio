@@ -69,6 +69,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://benkedem.co",
+    images: [
+      {
+        url: "https://benkedem.co/preview.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
   },
 };
 
