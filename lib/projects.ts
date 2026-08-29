@@ -73,6 +73,26 @@ export const projects: Project[] = [
     url: "https://thecontaineronline.com",
     wip: true,
   },
+  {
+    id: 5,
+    order: 5,
+    name: { en: "Kickz", he: "Kickz" },
+    summary: {
+      en: "An interactive shoe store featuring a 3D product viewer with OrbitControls, GSAP-powered animations, and a dynamic hero section with expandable shoe panels.",
+      he: "חנות נעליים אינטראקטיבית עם תצוגת מוצר תלת-ממדית עם OrbitControls, אנימציות מבוססות GSAP, וסקשן hero דינאמי עם פאנלים מתרחבים.",
+    },
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "React Three Fiber",
+      "Three.js",
+      "GSAP",
+      "SCSS",
+    ],
+    image: "/projects/kickz.png",
+    url: "",
+    wip: true,
+  },
 ];
 
 /* ========================

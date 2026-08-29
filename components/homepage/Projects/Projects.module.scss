@@ -49,6 +49,8 @@
     max-width: 900px;
     gap: 40px;
     margin-top: 16px;
+    height: 230px;
+    overflow: hidden;
   }
 
   .infoRowHe {
@@ -123,7 +125,7 @@
     position: relative;
     width: 100%;
     max-width: 900px;
-    height: 500px;
+    height: 400px;
     overflow: hidden;
   }
 
@@ -175,6 +177,7 @@
     .projectDetails {
       align-items: center;
       text-align: center;
+      padding: 0 5px;
     }
 
     .projectBadges {
