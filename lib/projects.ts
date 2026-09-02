@@ -78,8 +78,8 @@ export const projects: Project[] = [
     order: 5,
     name: { en: "Kickz", he: "Kickz" },
     summary: {
-      en: "An interactive shoe store featuring a 3D product viewer with OrbitControls, GSAP-powered animations, and a dynamic hero section with expandable shoe panels.",
-      he: "חנות נעליים אינטראקטיבית עם תצוגת מוצר תלת-ממדית עם OrbitControls, אנימציות מבוססות GSAP, וסקשן hero דינאמי עם פאנלים מתרחבים.",
+      en: "A full-stack sneaker store with a 3D shoe configurator, scroll-driven GSAP animations, interactive store with filters, cart system with Zustand, and a checkout flow.",
+      he: "חנות סניקרס עם קונפיגורטור נעליים תלת-ממדי, אנימציות GSAP מבוססות גלילה, חנות אינטראקטיבית עם פילטרים, מערכת עגלה עם Zustand, ותהליך תשלום.",
     },
     stack: [
       "Next.js",
@@ -88,10 +88,11 @@ export const projects: Project[] = [
       "Three.js",
       "GSAP",
       "SCSS",
+      "Zustand",
     ],
     image: "/projects/kickz.png",
-    url: "",
-    wip: true,
+    url: "https://kickz-kappa.vercel.app",
+    wip: false,
   },
 ];
 
