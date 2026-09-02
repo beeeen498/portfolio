@@ -92,7 +92,7 @@ export const projects: Project[] = [
     ],
     image: "/projects/kickz.png",
     url: "https://kickz-kappa.vercel.app",
-    wip: false,
+    wip: true,
   },
 ];
 
