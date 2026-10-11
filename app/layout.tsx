@@ -12,10 +12,12 @@ import { LoaderProvider } from "@/context/LoaderContext";
 import Loader from "@/components/shared/Loader/Loader";
 import Header from "@/components/shared/Header/Header";
 import Footer from "@/components/shared/Footer/Footer";
-import Script from "next/script"; // accessibility
+import Script from "next/script";
 import "@/app/main.scss";
 
-// fonts
+/* ========================
+   FONTS
+======================== */
 const teko = Teko({
   variable: "--font-teko",
   subsets: ["latin"],
@@ -52,7 +54,9 @@ const heebo = Heebo({
   weight: ["300", "400", "700"],
 });
 
-// metadata
+/* ========================
+   METADATA
+======================== */
 export const metadata: Metadata = {
   title: "Ben Kedem | Front End Developer",
   description: "Front End Developer portfolio showcasing projects and skills",
@@ -80,6 +84,9 @@ export const metadata: Metadata = {
   },
 };
 
+/* ========================
+   ROOT LAYOUT
+======================== */
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -91,7 +98,11 @@ export default function RootLayout({
       className={`${teko.variable} ${russoOne.variable} ${abel.variable} ${syncopate.variable} ${karantina.variable} ${heebo.variable}`}
     >
       <body>
-        {/* prevents flash before Loader mounts */}
+        {/* ========================
+            PRE-LOADER — grey screen that covers the page
+            until the Loader component mounts and takes over.
+            hidden via JS once the loader has played.
+        ======================== */}
         <div
           id="pre-loader"
           style={{
@@ -104,6 +115,7 @@ export default function RootLayout({
             zIndex: 998,
           }}
         />
+
         <LanguageProvider>
           <LoaderProvider>
             <Loader />
@@ -112,7 +124,14 @@ export default function RootLayout({
             <Footer />
           </LoaderProvider>
         </LanguageProvider>
-        <script src="https://negishot.co.il/cdn/widget.php?code=NGS_914747EA86CD"></script>
+
+        {/* ========================
+            ACCESSIBILITY WIDGET
+        ======================== */}
+        <Script
+          src="https://negishot.co.il/cdn/widget.php?code=NGS_914747EA86CD"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

@@ -36,9 +36,13 @@ export default function Loader() {
   useLayoutEffect(() => {
     const hasPlayed = sessionStorage.getItem("loaderPlayed");
     if (hasPlayed) {
+      /* loader already played this session — skip it */
       setIsLoading(false);
-      document.getElementById("pre-loader")?.remove();
+      const preLoader = document.getElementById("pre-loader");
+      if (preLoader) preLoader.style.display = "none";
     } else {
+      /* first visit — show loader and lock scroll */
+      document.documentElement.classList.add("loading");
       setVisible(true);
     }
   }, [setIsLoading]);
@@ -71,8 +75,9 @@ export default function Loader() {
     Promise.all([minTimer, pageLoad]).then(() => {
       clearInterval(interval);
 
-      /* remove curtain before slide — Loader is still on top */
-      document.getElementById("pre-loader")?.remove();
+      /* hide pre-loader — Loader component is still on top */
+      const preLoader = document.getElementById("pre-loader");
+      if (preLoader) preLoader.style.display = "none";
 
       gsap.to(loaderRef.current, {
         y: "-100%",
@@ -82,6 +87,7 @@ export default function Loader() {
           setVisible(false);
           setIsLoading(false);
           sessionStorage.setItem("loaderPlayed", "true");
+          document.documentElement.classList.remove("loading");
         },
       });
     });
