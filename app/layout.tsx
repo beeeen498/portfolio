@@ -12,6 +12,7 @@ import { LoaderProvider } from "@/context/LoaderContext";
 import Loader from "@/components/shared/Loader/Loader";
 import Header from "@/components/shared/Header/Header";
 import Footer from "@/components/shared/Footer/Footer";
+import Script from "next/script"; // accessibility
 import "@/app/main.scss";
 
 // fonts
@@ -111,6 +112,7 @@ export default function RootLayout({
             <Footer />
           </LoaderProvider>
         </LanguageProvider>
+        <script src="https://negishot.co.il/cdn/widget.php?code=NGS_914747EA86CD"></script>
       </body>
     </html>
   );
