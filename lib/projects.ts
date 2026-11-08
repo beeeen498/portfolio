@@ -71,7 +71,7 @@ export const projects: Project[] = [
     stack: ["Next.js", "Shopify Storefront API", "SCSS", "Vercel"],
     image: "/projects/the-container.png",
     url: "https://thecontaineronline.com",
-    wip: true,
+    wip: false,
   },
   {
     id: 5,
